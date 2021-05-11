@@ -1,0 +1,159 @@
+.article_container{
+    border-bottom: 1px solid #5CA4A2;
+}
+
+.exhibition_img{
+    width: 100%;
+    padding: 2%;
+    object-fit: contain;
+    border-bottom: 1px solid #5CA4A2;
+}
+
+.piece_container{
+    overflow: auto;
+    vertical-align: middle;
+}
+
+.piece_img{
+    width: 100%;
+    padding: 1%;
+    margin: 0;
+    object-fit: contain;
+}
+
+.piece_img_block {
+    display: inline-block;
+    width: 50%;
+    border-right: 1px solid #5CA4A2;
+    border-top: 1px solid #5CA4A2;
+    float: left;
+}
+
+.piece_img_block:nth-of-type(even) {
+    border-right: none;
+}
+
+.exhibit_day {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 10px;
+}
+
+.piece_img_block a{
+    position: relative;
+}
+
+.img_block{
+    display: block!important;
+}
+
+.piece_action::after{
+    width: 100%;
+    height: 100%;
+    content:"";
+    background-color: #F7F0F0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.piece_action{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    padding: 10%;
+    z-index: 1;
+}
+
+.piece_action p{
+    height: 100%;
+    color: black;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.piece_img_block a:hover .piece_action::after{
+    opacity: 50%;
+}
+
+.piece_img_block a:hover .piece_action {
+    opacity: 100%;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1024px) {
+    .exhibition_main{
+        width: 250%;
+    }
+
+}
+
+@media screen and (min-width: 1025px) {
+    .exhibition_main{
+        width: 180%;
+    }
+
+    .piece_img_block {
+        width: 25%;
+    }
+
+    .piece_img_block:nth-of-type(2) {
+        border-right: 1px solid #5CA4A2;
+    }
+
+    .piece_img_block:nth-of-type(6) {
+        border-right: 1px solid #5CA4A2;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .main_name {
+        display: none;
+    }
+
+    .article_container{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .exhibition_poster{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        vertical-align: middle;
+        border-right: 1px solid #5CA4A2;
+    }
+
+    .exhibition_main{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        vertical-align: middle;
+    }
+
+    .exhibition_p {
+        padding-top: 3%;
+        padding-right: 1%;
+        padding-left: 1%;
+    }
+
+    .exhibitor > strong{
+        font-size: 16px;
+    }
+
+    .exhibition_name > strong{
+        font-size: 18px;
+    }
+
+    .exhibit_day {
+        font-size: 13px;
+    }
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{% block head_title %}Exhibition{% endblock %}</title>
+
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!--font-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/mainpage.css" %}"/>
+
+{#    {% block style_block %}{% endblock %}#}
+</head>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("mySidenav").style.borderRight = "2px solid #5CA4A2";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("mySidenav").style.borderRight = "none";
+    }
+</script>
+
+<body>
+<div class="row">
+    <div class="header_row col-xs-12">
+        <div class="menu">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href=""><img class="menu_logo" src="{% static 'images/민트로고.png' %}" alt="ARTA"></a>
+                <a href="#">소개 <small>about us</small></a>
+                <a href="#">전시회 보기 <small>exhibition</small></a>
+                <a href="#">마이페이지 <small>my page</small></a>
+                <a href="#">로그아웃 <small>log out</small></a>
+            </div>
+            <span class="menu_icon" style="cursor:pointer" onclick="openNav()">&#9776; </span>
+        </div>
+        <!--로고-->
+        <div class="header">
+            <a href=""><img class="logo" src="{% static 'images/민트로고.png' %}" alt="ARTA"></a>
+        </div>
+        <!--검색창-->
+        <div class="search">
+            <form action="/">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        {% block main_area %}
+        {% endblock %}
+    </div>
+</div>
+{% include 'arta_front/footer.html' %}
+</body>
+</html>

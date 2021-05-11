@@ -1,0 +1,171 @@
+body {
+    color: #5CA4A2;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.row{
+    margin: 0;
+}
+
+.container-fluid{
+    padding: 0;
+}
+
+.header_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-bottom: 1px solid #5CA4A2;
+}
+
+.menu{
+    display: inline-block;
+    height: 100%;
+    font-size: 100%;
+}
+
+span{
+    display: inline-block;
+    margin: auto;
+    margin-top: 5%;
+    margin-right: 5%;
+}
+
+.menu_logo{
+    width: 95px;
+    height: 31px;
+}
+
+.menu_icon{
+    font-size: 150%;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 10%;
+}
+
+.sidenav a {
+    padding: 5% 5% 5% 10%;
+    text-decoration: none;
+    font-size: 18px;
+    color: #5CA4A2;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    font-size: 30px;
+    margin: 0;
+}
+
+.header{
+    display: inline-block;
+    margin: 0;
+    width: 16%;
+}
+
+.logo {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+}
+
+.search{
+    display: inline-block;
+    width: 30%;
+    float: right;
+}
+
+.form-control{
+    padding: 2% 6%;
+    border-radius: 12px;
+    border: 1px solid #5CA4A2;
+    font-size: 12px;
+}
+
+.btn-default {
+    color: #5CA4A2;
+    border-color: #5CA4A2;
+    border-left: none;
+    border-radius: 12px;
+}
+
+@media screen and (min-width: 992px) {
+    body{
+        font-size: 30px;
+    }
+
+    .sidenav {
+        padding_top: 15px;
+        border-right: 2px solid #5CA4A2;
+    }
+
+    .sidenav a {
+        font-size: 30px;
+    }
+
+    .sidenav .closebtn {
+        font-size: 30px;
+    }
+
+}
+
+/*Reset CSS*/
+a {
+    font-family: 'Roboto', sans-serif;
+    color: inherit;
+    font-size: 10px;
+    text-decoration: none;
+}
+
+button, input {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active {
+    outline: none;
+    box-shadow: none;
+}
+
+ul,
+li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    list-style-type: none;
+    display: inline-block;
+}
+
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+

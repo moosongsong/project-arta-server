@@ -1,0 +1,203 @@
+{#<!DOCTYPE html>#}
+{#<html lang="ko">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>전시회 목록보기</title>#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">#}
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>#}
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>#}
+{#    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>#}
+{##}
+{#    <link rel="preconnect" href="https://fonts.gstatic.com"><!--font-->#}
+{#    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">#}
+{#    <!--font-->#}
+{##}
+{#    <link rel="stylesheet" href="../../static/css/exhibition_list_style.css"/>#}
+{#    <link rel="stylesheet" href="../../static/css/main.css"/>#}
+{#</head>#}
+{##}
+{#<script type="text/javascript">#}
+{#    $(document).ready(function () {#}
+{#        $("#header").load("./arta_header.html");#}
+{#        $("#category_list").load("./category_list.html");#}
+{#        $("#footer").load("./footer.html");#}
+{#    });#}
+{#</script>#}
+{##}
+{#<body>#}
+{#<div class="container-fluid">#}
+{#    <header id="header"></header>#}
+{#    <div class="row">#}
+{#        <div class="aside_container col-md-1 col-md-push-11">#}
+{#            <div id="category_list"></div>#}
+{#        </div>#}
+{#        <div class="content_container col-md-11 col-md-pull-1">#}
+{#            <div class="article_container">#}
+{#                <div class="article_block">#}
+{#                    <h2>전시회 리스트1</h2>#}
+{#                    <div class="exhibition_img_block">#}
+{#                        <a href="./user_exhibition_show.html" class="img_block">#}
+{#                            <img class="exhibition_img" src="https://i.imgur.com/hiTuxfv.jpeg" alt="전시회1 포스터"/>#}
+{#                            <div class="exhibition_action">#}
+{#                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <a href="./user_exhibition_show.html">#}
+{#                        <p class="exhibitor">전시자명</p>#}
+{#                    </a>#}
+{#                    <a href="./user_exhibition_show.html">#}
+{#                        <p class="exhibition_name">전시회 이름</p>#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="article_block">#}
+{#                    <div class="exhibition_img_block">#}
+{#                        <a href="./user_exhibition_show.html" class="img_block">#}
+{#                            <img class="exhibition_img" src="https://i.imgur.com/YBIac9k.jpg" alt="전시회2 포스터"/>#}
+{#                            <div class="exhibition_action">#}
+{#                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <a href="./user_exhibition_show.html">#}
+{#                        <p class="exhibitor">전시자명</p>#}
+{#                    </a>#}
+{#                    <a href="./user_exhibition_show.html">#}
+{#                        <p class="exhibition_name">전시회 이름</p>#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="article_block">#}
+{#                    <div class="exhibition_img_block">#}
+{#                        <a href="./user_exhibition_show.html" class="img_block">#}
+{#                            <img class="exhibition_img"#}
+{#                                 src="https://newsimg.hankookilbo.com/cms/articlerelease/2018/10/26/201810260888392821_1.jpg"#}
+{#                                 alt="전시회3 포스터"/>#}
+{#                            <div class="exhibition_action">#}
+{#                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구#}
+{#                                    저쩌구 너무 길면 어떻게 되는 것인가요?전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면#}
+{#                                    어떻게 되는 것인가요?전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는#}
+{#                                    것인가요?전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?전시회#}
+{#                                    설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <a href="./user_exhibition_show.html">#}
+{#                        <p class="exhibitor">전시자명</p>#}
+{#                    </a>#}
+{#                    <a href="./user_exhibition_show.html">#}
+{#                        <p class="exhibition_name">전시회 이름</p>#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="article_block">#}
+{#                    <div class="exhibition_img_block">#}
+{#                        <a href="./user_exhibition_show.html" class="img_block">#}
+{#                            <img class="exhibition_img"#}
+{#                                 src="http://img.sportsworldi.com/content/image/2020/11/05/20201105519244.jpg"#}
+{#                                 alt="전시회4 포스터"/>#}
+{#                            <div class="exhibition_action">#}
+{#                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?</p>#}
+{#                            </div>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <a href="./user_exhibition_show.html">#}
+{#                        <p class="exhibitor">전시자명</p>#}
+{#                    </a>#}
+{#                    <a href="./user_exhibition_show.html">#}
+{#                        <p class="exhibition_name">전시회 이름</p>#}
+{#                    </a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#</div>#}
+{#</body>#}
+{#</html>#}
+{% extends 'arta_front/arta_header.html' %}
+{% load static %}
+{% block head_title %}MAIN{% endblock %}
+{% block style_block %}
+    <link rel="stylesheet" href="{% static 'css/exhibition_list_style.css' %}"/>
+{% endblock %}
+{% block main_area %}
+    <div class="row">
+        <div class="content_container col-md-11 col-md-pull-1">
+            <div class="article_container">
+                <div class="article_block">
+                    <h2>전시회 리스트1</h2>
+                    <div class="exhibition_img_block">
+                        <a href="./user_exhibition_show.html" class="img_block">
+                            <img class="exhibition_img" src="https://i.imgur.com/hiTuxfv.jpeg" alt="전시회1 포스터"/>
+                            <div class="exhibition_action">
+                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+                </div>
+                <div class="article_block">
+                    <div class="exhibition_img_block">
+                        <a href="./user_exhibition_show.html" class="img_block">
+                            <img class="exhibition_img" src="https://i.imgur.com/YBIac9k.jpg" alt="전시회2 포스터"/>
+                            <div class="exhibition_action">
+                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+                </div>
+                <div class="article_block">
+                    <div class="exhibition_img_block">
+                        <a href="./user_exhibition_show.html" class="img_block">
+                            <img class="exhibition_img"
+                                 src="https://newsimg.hankookilbo.com/cms/articlerelease/2018/10/26/201810260888392821_1.jpg"
+                                 alt="전시회3 포스터"/>
+                            <div class="exhibition_action">
+                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구
+                                    저쩌구 너무 길면 어떻게 되는 것인가요?전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면
+                                    어떻게 되는 것인가요?전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는
+                                    것인가요?전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?전시회
+                                    설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?</p>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+                </div>
+                <div class="article_block">
+                    <div class="exhibition_img_block">
+                        <a href="./user_exhibition_show.html" class="img_block">
+                            <img class="exhibition_img"
+                                 src="http://img.sportsworldi.com/content/image/2020/11/05/20201105519244.jpg"
+                                 alt="전시회4 포스터"/>
+                            <div class="exhibition_action">
+                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?</p>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
