@@ -87,6 +87,41 @@
     opacity: 100%;
 }
 
+.aside_container{
+    display: flex;
+}
+.main_name {
+    display: inline-block;
+    width: 57%;
+    text-align: right;
+}
+
+.icon {
+    display: flex;
+    justify-content: flex-end;
+    width: 43%;
+    padding-right: 2%;
+    wrap-option: nowrap;
+}
+
+.share {
+    display: inline-block;
+    flex-direction: column;
+    padding-right: 7px;
+    text-align: center;
+}
+
+.bookmark {
+    display: inline-block;
+    padding-right: 7px;
+    text-align: center;
+}
+
+.guest_book {
+    display: inline-block;
+    text-align: center;
+}
+
 @media screen and (min-width: 992px) and (max-width: 1024px) {
     .exhibition_main{
         width: 250%;
@@ -156,4 +191,34 @@
     .exhibit_day {
         font-size: 13px;
     }
+
+    .icon {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .share {
+        padding-right: 0;
+        padding-top: 10px;
+    }
+
+    .bookmark {
+        padding-right: 0;
+        padding-top: 10px;
+    }
+
+    .guest_book {
+        padding-top: 10px;
+    }
+
+    .icon_font {
+        font-size: 12px;
+    }
+
+    .fa {
+        font-size: 15px;
+    }
+
 }

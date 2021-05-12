@@ -18,7 +18,7 @@ class SinglePage:
     def landing_page(request):
         return render(
             request,
-            'arta_front/ARTA_main_page.html'
+            'arta_front_develop/ARTA_User_exhibition_list.html'
         )
 
     def about_page(request):

@@ -33,7 +33,7 @@ class Material(models.Model):
 class Exhibition(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
     explain = models.TextField(null=False, blank=False)
-    poster = models.ImageField(upload_to='exhibition/', blank=True, null=True)
+    poster = models.ImageField(upload_to='exhibition/%Y/%m/%d/', blank=True, null=True)
     create_at = models.DateTimeField(auto_now_add=True)
     remove_at = models.DateTimeField(null=True, blank=True)
     start_at = models.DateTimeField(null=True, blank=True)
@@ -56,7 +56,7 @@ class Exhibition(models.Model):
 class Piece(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
     explain = models.TextField(null=False, blank=False)
-    image = models.ImageField(upload_to='piece/', null=False, blank=False)
+    image = models.ImageField(upload_to='piece/%Y/%m/%d/', null=False, blank=False)
     size = models.CharField(max_length=100, null=False, blank=False)
     author = models.CharField(max_length=50, null=False, blank=False)
     create_at = models.DateTimeField(auto_now_add=True, null=False)
@@ -71,7 +71,7 @@ class Piece(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return f'/piece/{self.pk}/'
+        return f'/exhibition/piece/{self.pk}/'
 
     def get_file_name(self):
         return os.path.basename(self.image.name)

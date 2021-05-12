@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>전시회 목록보기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">    <!--font-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/artist_exhibition_list_style.css" />
+</head>
+
+<script type="text/javascript">
+    $(document).ready( function() {
+        $("#header").load("./arta_header.html");
+        $("#category_list").load("./category_list.html");
+    });
+</script>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("mySidenav").style.borderRight = "2px solid #5CA4A2";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("mySidenav").style.borderRight = "none";
+    }
+</script>
+
+<style>
+    .exhibition_edit{
+        display: inline-block;
+        background: #5CA4A2;
+        color: white;
+        font-size: 10px;
+        padding: 2px 2px 2px 2px;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+
+    .exhibition_edit:visited,
+    .exhibition_edit:hover,
+    .exhibition_edit:active {
+        text-decoration: none;
+        font-weight: bold;
+        color: white;
+    }
+</style>
+
+
+<body>
+<div class="container-fluid">
+    <header id = "header"></header>
+    <div class="row">
+        <div class="aside_container col-md-1 col-md-push-11">
+            <div id="category_list"></div>
+            <a class="exhibition_edit" href="내가 만든 전시회 목록만 보이는 화면...">edit</a>
+        </div>
+        <div class="content_container col-md-11 col-md-pull-1">
+            <div class="article_container">
+                <article>
+                    <h2>전시회 리스트1</h2>
+                    <a href="./artist_exhibition_show.html">
+                        <img class= "exhibition_img" src="https://i.imgur.com/hiTuxfv.jpeg" alt="전시회1 포스터"/>
+                    </a>
+                    <a href="./artist_exhibition_show.html">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="./artist_exhibition_show.html">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+                </article>
+                <article>
+                    <h2>전시회 리스트2</h2>
+                    <a href="#">
+                        <img class= "exhibition_img" src="https://i.imgur.com/YBIac9k.jpg" alt="전시회2 포스터"/>
+                    </a>
+                    <a href="#">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="#">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+                </article>
+                <article>
+                    <h2>전시회 리스트3</h2>
+                    <a href="#">
+                        <img class= "exhibition_img" src="https://newsimg.hankookilbo.com/cms/articlerelease/2018/10/26/201810260888392821_1.jpg" alt="전시회3 포스터"/>
+                    </a>
+                    <a href="#">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="#">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+                </article>
+                <article>
+                    <h2>전시회 리스트4</h2>
+                    <a href="#">
+                        <img class= "exhibition_img" src="http://img.sportsworldi.com/content/image/2020/11/05/20201105519244.jpg" alt="전시회4 포스터"/>
+                    </a>
+                    <a href="#">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="#">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="footer col-xs-12"> <!--아래 페이징 공간-->
+            <h2>footer</h2>
+        </div>
+    </div>
+</div>
+</body>
+</html>

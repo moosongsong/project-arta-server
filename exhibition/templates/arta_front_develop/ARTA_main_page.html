@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>ARTA 메인페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/user_exhibition_list_style.css" />
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/완.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com"> <!--font-->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet"><!--font-->
+
+    <script type="text/javascript">$(document).ready( function() {$("#header").load("./arta_header.html");});</script>
+</head>
+
+<style>
+  .article_container{
+    border: 0;
+  }
+  .main_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+  }
+  .main_logo {
+    width: 100%;
+    width: 225px;
+    height: 74px;
+
+  }
+  .aside_container {
+    display: none;
+  }
+  @media screen and (min-width: 992px) {
+    .main_logo {
+
+      width: 520px;
+      height: 170px;
+    }
+  }
+</style>
+
+<body>
+<div class="container-fluid">
+    <header id = "header"></header>
+    <div class="row">
+        <div class="content_container col-xs-12">
+            <div class="article_container">
+                <article>
+                    <div class="main_page">
+                      <img class ="main_logo" src="../images/민트로고.png" alt="ARTA">
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="footer col-xs-12"> <!--아래 페이징 공간-->
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
