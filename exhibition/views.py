@@ -18,13 +18,13 @@ class SinglePage:
     def landing_page(request):
         return render(
             request,
-            'arta_front_develop/ARTA_User_exhibition_list.html'
+            'arta_front_develop/ARTA_main_page.html'
         )
 
     def about_page(request):
         return render(
             request,
-            'single_page/about.html'
+            'arta_front_develop/ARTA_introduction.html'
         )
 
 
@@ -34,7 +34,7 @@ class ExhibitionPage:
 
         return render(
             request,
-            'exhibition/exhibition_list.html',
+            'arta_front_develop/ARTA_User_exhibition_list.html',
             {
                 # 'post': post,
             }
@@ -43,7 +43,7 @@ class ExhibitionPage:
     def exhibition_detail_page(request, pk):
         return render(
             request,
-            'exhibition/exhibition_list.html',
+            'arta_front_develop/ARTA_User_exhibition_show.html',
             {
                 #
             }
