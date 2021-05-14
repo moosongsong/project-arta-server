@@ -69,6 +69,7 @@ class Piece(models.Model):
 
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, blank=True)
     material = models.ForeignKey(Material, null=True, on_delete=models.SET_NULL, blank=True)
+    exhibition = models.ForeignKey(Exhibition, null=True, on_delete=models.SET_NULL, blank=True)
 
     def __str__(self):
         return self.name

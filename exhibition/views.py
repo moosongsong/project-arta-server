@@ -1,18 +1,27 @@
 from django.shortcuts import render
-# from django.views.generic import ListView
-from .models import Exhibition
+from django.views.generic import ListView, DetailView
+from .models import Exhibition, Category, Material, Piece
 
 
-# class ExhibitionList(ListView):
-#     model = Exhibition
-#     ordering = '-pk'
-#     paginate_by = 5
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(ExhibitionList, self).get_context_data()
-#         context['categories'] = Category.objects.all()
-#         context['no_category_post_count'] = Post.objects.filter(category=None).count()
-# return context
+class ExhibitionList(ListView):
+    model = Exhibition
+    ordering = '-pk'
+    paginate_by = 5
+
+    def get_context_data(self, **kwargs):
+        context = super(ExhibitionList, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        return context
+
+
+class ExhibitionDetail(DetailView):
+    model = Exhibition
+
+    def get_context_data(self, **kwargs):
+        context = super(ExhibitionDetail, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        # context['categories'] = Category.objects.all()
+        return context
 
 
 class SinglePage:
@@ -30,17 +39,6 @@ class SinglePage:
 
 
 class ExhibitionPage:
-    def exhibition_list_page(request):
-        # post = Post.objects.get(pk=pk)
-
-        return render(
-            request,
-            'arta_front_develop/ARTA_User_exhibition_list.html',
-            {
-                # 'post': post,
-            }
-        )
-
     def exhibition_detail_page(request, pk):
         return render(
             request,

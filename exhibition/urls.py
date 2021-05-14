@@ -9,8 +9,10 @@ urlpatterns = [
     path('search/', views.SearchPage.search_page),
     path('search/result/', views.SearchPage.search_result_page),
 
-    path('exhibition/', views.ExhibitionPage.exhibition_list_page),
-    path('exhibition/<int:pk>/', views.ExhibitionPage.exhibition_detail_page),
+    # path('exhibition/', views.ExhibitionPage.exhibition_list_page),
+    path('exhibition/', views.ExhibitionList.as_view()),
+    # path('exhibition/<int:pk>/', views.ExhibitionPage.exhibition_detail_page),
+    path('exhibition/<int:pk>/', views.ExhibitionDetail.as_view()),
     path('exhibition/gueskbook/<int:pk>/', views.ExhibitionPage.exhibition_detail_page),
     path('exhibition/about/<int:pk>/', views.SinglePage.about_page),
 
