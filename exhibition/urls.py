@@ -7,7 +7,7 @@ urlpatterns = [
     path('about/', views.SinglePage.about_page),
     path('preference/', views.LikePage.all_like_page),
     path('search/', views.SearchPage.search_page),
-    path('search/<str:key>/', views.SearchPage.search_result_page),
+    path('search/result/', views.SearchPage.search_result_page),
 
     path('exhibition/', views.ExhibitionPage.exhibition_list_page),
     path('exhibition/<int:pk>/', views.ExhibitionPage.exhibition_detail_page),
