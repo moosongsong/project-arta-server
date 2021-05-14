@@ -77,3 +77,23 @@ class PiecePage:
                 #
             }
         )
+
+
+class SearchPage:
+    def search_page(request):
+        return render(
+            request,
+            'arta_front_develop/ARTA_search_page.html',
+            {
+                #
+            }
+        )
+
+    def search_result_page(request, key):
+        return render(
+            request,
+            'arta_front_develop/ARTA_search_result.html',
+            {
+                #
+            }
+        )

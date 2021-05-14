@@ -1,127 +1,129 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>ARTA 검색 결과</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../css/user_exhibition_list_style.css" />
-    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-    <link rel="stylesheet" href="../css/main.css">
-    <script src="../js/완.js"></script>
-    <link rel="stylesheet" href="../css/search.css">
+{% extends 'arta_front_develop/arta_base.html' %}
+{% load static %}
+{% block header_title %}<title>ARTA 검색 결과</title>{% endblock %}
+{% block script_blcok %}{% endblock %}
 
-    <link rel="preconnect" href="https://fonts.gstatic.com"> <!--font-->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet"><!--font-->
+{% block style_blcok %}
+    <link rel="stylesheet" href="{% static 'css/exhibition_list_style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/search.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/pagination.css' %}"/>
+    <style>
+        .result_page {
+            padding: 2%;
+        }
 
-    <script type="text/javascript">$(document).ready( function() {$("#header").load("./arta_header.html");});</script>
-</head>
+        .select_image {
+            padding-bottom: 5%;
+        }
 
-<style>
-   .result_page {
-     padding: 2%;
-   }
-   .select_image {
-     padding-bottom: 5%;
-   }
-   .result_comment {
-     color: #A0CDC5;
-     text-align: left;
-     padding-bottom: 2%;
-   }
-  @media screen and (min-width: 992px) {
-    .result_comment {
-      font-size: 12px;
-    }
-  }
-</style>
+        .result_comment {
+            color: #A0CDC5;
+            text-align: left;
+            padding-bottom: 2%;
+        }
 
-<body>
-<div class="container-fluid">
-    <header id="header"></header>
+        @media screen and (min-width: 992px) {
+            .result_comment {
+                font-size: 12px;
+            }
+        }
+    </style>
+{% endblock %}
 
-    <div class="row">
-        <div class="aside_container col-md-1 col-md-push-11">
-            <p class="search_top">검색</p> <!--모바일 버전에서만 보이기-->
-        </div>
-        <div class="content_container col-md-11 col-md-pull-1">
-            <div class="article_container"> <!--내용-->
-              <div class="search_page col-lg-9">
-                <div class="nav_search col-lg-3"> <!--search 부분 nav-->
-                  <a href="">전체</a>
-                  <a href="">전시회</a>
-                  <a href="">작가</a>
-                </div>
-                <form action="/action_page.php"> <!--검색-->
-                    <div class="input-group col-lg-9">
-                        <input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="search">
-                        <div class="input-group-btn">
-                          <button class="btn search_click" type="submit">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                          </button>
-                            <!-- <button class="btn search_btn" type="submit">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button> -->
+{% block main_blcok %}
+
+
+    <div class="container-fluid">
+        <header id="header"></header>
+
+        <div class="row">
+            <div class="aside_container col-md-1 col-md-push-11">
+                <p class="search_top">검색</p> <!--모바일 버전에서만 보이기-->
+            </div>
+            <div class="content_container col-md-11 col-md-pull-1">
+                <div class="article_container"> <!--내용-->
+                    <div class="search_page col-lg-9">
+                        <div class="nav_search col-lg-3"> <!--search 부분 nav-->
+                            <a href="">전체</a>
+                            <a href="">전시회</a>
+                            <a href="">작가</a>
+                        </div>
+                        <form action="/search/key/" method="get"> <!--검색-->
+                            <div class="input-group col-lg-9">
+                                <input type="text" class="form-control" placeholder="검색어를 입력해주세요" name="search">
+                                <div class="input-group-btn">
+                                    <button class="btn search_click" type="submit">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                    <!-- <button class="btn search_btn" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button> -->
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                            <div class="result_page"> <!--결과 페이지 : 모바일 2*4 / 웹 4*2 -->
+                                <p class="result_comment">"정우" 검색 결과입니다.</p>
+                                <div class="col-xs-6 col-lg-3">
+                                    <div class="select_image">
+                                        <img src="https://pbs.twimg.com/media/EUg8auBU4AE8uJ6?format=jpg&name=large" style="width:100%" class="selection_img">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-lg-3">
+                                    <div class="select_image">
+                                        <img src="https://pbs.twimg.com/media/EUg8auBU4AE8uJ6?format=jpg&name=large" style="width:100%" class="selection_img">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-lg-3">
+                                    <div class="select_image">
+                                        <img src="https://pbs.twimg.com/media/EUg8auBU4AE8uJ6?format=jpg&name=large" style="width:100%" class="selection_img">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-lg-3">
+                                    <div class="select_image">
+                                        <img src="https://pbs.twimg.com/media/EUg8auBU4AE8uJ6?format=jpg&name=large" style="width:100%" class="selection_img">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-lg-3">
+                                    <div class="select_image">
+                                        <img src="https://pbs.twimg.com/media/EUg8auBU4AE8uJ6?format=jpg&name=large" style="width:100%" class="selection_img">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-lg-3">
+                                    <div class="select_image">
+                                        <img src="https://pbs.twimg.com/media/EUg8auBU4AE8uJ6?format=jpg&name=large" style="width:100%" class="selection_img">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-lg-3">
+                                    <div class="select_image">
+                                        <img src="https://pbs.twimg.com/media/EUg8auBU4AE8uJ6?format=jpg&name=large" style="width:100%" class="selection_img">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-lg-3">
+                                    <div class="select_image">
+                                        <img src="https://pbs.twimg.com/media/EUg8auBU4AE8uJ6?format=jpg&name=large" style="width:100%" class="selection_img">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
-
-                <div class="row">
-                  <div class="result_page"> <!--결과 페이지 : 모바일 2*4 / 웹 4*2 -->
-                    <p class="result_comment">"정우" 검색 결과입니다.</p>
-                    <div class="col-xs-6 col-lg-3">
-                      <div class="select_image">
-                        <img src="../images/보스 정우.jpg" style="width:100%" class="selection_img">
-                      </div>
-                    </div>
-                    <div class="col-xs-6 col-lg-3">
-                      <div class="select_image">
-                        <img src="../images/보스 정우.jpg" style="width:100%" class="selection_img">
-                      </div>
-                    </div>
-                    <div class="col-xs-6 col-lg-3">
-                      <div class="select_image">
-                        <img src="../images/보스 정우.jpg" style="width:100%" class="selection_img">
-                      </div>
-                    </div>
-                    <div class="col-xs-6 col-lg-3">
-                      <div class="select_image">
-                        <img src="../images/보스 정우.jpg" style="width:100%" class="selection_img">
-                      </div>
-                    </div>
-                    <div class="col-xs-6 col-lg-3">
-                      <div class="select_image">
-                        <img src="../images/보스 정우.jpg" style="width:100%" class="selection_img">
-                      </div>
-                    </div>
-                    <div class="col-xs-6 col-lg-3">
-                      <div class="select_image">
-                        <img src="../images/보스 정우.jpg" style="width:100%" class="selection_img">
-                      </div>
-                    </div>
-                    <div class="col-xs-6 col-lg-3">
-                      <div class="select_image">
-                        <img src="../images/보스 정우.jpg" style="width:100%" class="selection_img">
-                      </div>
-                    </div>
-                    <div class="col-xs-6 col-lg-3">
-                      <div class="select_image">
-                        <img src="../images/보스 정우.jpg" style="width:100%" class="selection_img">
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="footer_row col-xs-12"> <!--아래 페이징 공간-->
+                <footer>
+                    <ul class="pagination pagination-sm">
+                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-left"
+                                                                               aria-hidden="true"></i></a></li>
+                        <li class="page-item"><a class="page-fake" href="#"><i class="" aria-hidden="true"></i></a></li>
+                        <li class="page-item"><a class="page-fake" href="#"><i class="" aria-hidden="true"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-right"
+                                                                               aria-hidden="true"></i></a></li>
+                    </ul>
+                </footer>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="footer col-xs-12"> <!--아래 페이징 공간-->
-
-        </div>
-    </div>
-</div>
-</body>
-</html>
+{% endblock %}
