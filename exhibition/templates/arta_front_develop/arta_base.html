@@ -6,6 +6,9 @@
 
     {% block header_title %}<title>header</title>{% endblock %}
 
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}"/>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -194,7 +197,7 @@
                 <a href="/"><img class="menu_logo" src="{% static 'images/민트로고.png' %}" alt="ARTA"></a>
                 <a href="/about/">소개 <small>about us</small></a>
                 <a href="/exhibition/">전시회 보기 <small>exhibition</small></a>
-                <a href="./user_likeExhibition_show.html">좋아요 목록보기 <small>like page</small></a>
+                <a href="/preference/">좋아요 목록보기 <small>like page</small></a>
                 <a href="#">로그아웃 <small>log out</small></a>
             </div>
             <!--비로그인

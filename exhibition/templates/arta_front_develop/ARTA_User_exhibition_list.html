@@ -5,6 +5,7 @@
 {% block style_blcok %}
     <link rel="stylesheet" href="{% static 'css/exhibition_list_style.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/category.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/pagination.css' %}"/>
 {% endblock %}
 
 {% block main_blcok %}
@@ -101,6 +102,20 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="footer_row col-xs-12"> <!--아래 페이징 공간-->
+                <footer>
+                    <ul class="pagination pagination-sm">
+                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-left"
+                                                                               aria-hidden="true"></i></a></li>
+                        <li class="page-item"><a class="page-fake" href="#"><i class="" aria-hidden="true"></i></a></li>
+                        <li class="page-item"><a class="page-fake" href="#"><i class="" aria-hidden="true"></i></a></li>
+                        <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-right"
+                                                                               aria-hidden="true"></i></a></li>
+                    </ul>
+                </footer>
+            </div>
+        </div>
     </div>
-    {% include 'arta_front_develop/pagination.html' %}
+
 {% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render
 # from django.views.generic import ListView
 from .models import Exhibition
 
+
 # class ExhibitionList(ListView):
 #     model = Exhibition
 #     ordering = '-pk'
@@ -56,7 +57,23 @@ class ExhibitionPage:
         )
 
 
+class LikePage:
+    def all_like_page(request):
+        return render(
+            request,
+            'arta_front_develop/ARTA_LikePage.html',
+            {
+                #
+            }
+        )
 
 
-
-
+class PiecePage:
+    def piece_detail_page(request):
+        return render(
+            request,
+            'arta_front_develop/ARTA_User_exhibition_show.html',
+            {
+                #
+            }
+        )
