@@ -60,9 +60,12 @@ class Piece(models.Model):
     size = models.CharField(max_length=100, null=False, blank=False)
     author = models.CharField(max_length=50, null=False, blank=False)
     create_at = models.DateTimeField(auto_now_add=True, null=False)
+    make_date = models.DateTimeField(auto_now=True, null=False)
     remove_at = models.DateTimeField(null=True, blank=True)
     order = models.IntegerField(null=False, blank=True)
     click_count = models.IntegerField(default=0)
+    major = models.CharField(max_length=10, null=True, blank=True)
+    number = models.IntegerField(null=True, blank=True)
 
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, blank=True)
     material = models.ForeignKey(Material, null=True, on_delete=models.SET_NULL, blank=True)
