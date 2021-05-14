@@ -86,7 +86,7 @@ class GuestBook(models.Model):
     exhibition = models.ForeignKey(Exhibition, on_delete=models.SET_NULL, null=True, blank=True)
     content = models.TextField(null=False, blank=False)
     create_at = models.DateTimeField(auto_now_add=True, null=False)
-    remove_at = models.DateTimeField(null=True)
+    remove_at = models.DateTimeField(null=True, blank=True)
 
 
 class Comment(models.Model):
@@ -94,7 +94,7 @@ class Comment(models.Model):
     piece = models.ForeignKey(Piece, on_delete=models.SET_NULL, null=True, blank=True)
     content = models.TextField(null=False, blank=False)
     create_at = models.DateTimeField(auto_now_add=True, null=False)
-    remove_at = models.DateTimeField(null=True)
+    remove_at = models.DateTimeField(null=True, blank=True)
 
 
 class InitialLike(models.Model):

@@ -16,6 +16,7 @@ urlpatterns = [
     path('exhibition/gueskbook/<int:pk>/', views.ExhibitionPage.exhibition_detail_page),
     path('exhibition/about/<int:pk>/', views.SinglePage.about_page),
 
-    path('exhibition/piece/<int:pk>/', views.ExhibitionPage.exhibition_detail_page),
-    path('exhibition/piece/comment/<int:pk>/', views.ExhibitionPage.exhibition_detail_page),
+    # path('exhibition/piece/<int:pk>/', views.PiecePage.piece_detail_page),
+    path('exhibition/piece/<int:pk>/', views.PieceDetail.as_view()),
+    path('exhibition/piece/comment/<int:pk>/', views.PiecePage.piece_detail_page),
 ]

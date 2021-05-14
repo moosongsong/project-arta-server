@@ -24,6 +24,14 @@ class ExhibitionDetail(DetailView):
         return context
 
 
+class PieceDetail(DetailView):
+    model = Piece
+
+    def get_context_data(self, **kwargs):
+        context = super(PieceDetail, self).get_context_data()
+        return context
+
+
 class SinglePage:
     def landing_page(request):
         return render(
@@ -67,10 +75,10 @@ class LikePage:
 
 
 class PiecePage:
-    def piece_detail_page(request):
+    def piece_detail_page(request, pk):
         return render(
             request,
-            'arta_front_develop/ARTA_User_exhibition_show.html',
+            'arta_front_develop/ARTA_User_piece_show.html',
             {
                 #
             }
