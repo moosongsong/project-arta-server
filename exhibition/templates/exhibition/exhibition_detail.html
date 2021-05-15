@@ -18,10 +18,14 @@
                         <i class="fa fa-share-alt" style="font-size:13px" aria-hidden="true"></i>
                         <p class="icon_font"> 공유 </p>
                     </a>
-                    <a class="bookmark" href="">
+                    <a class="bookmark" href="{{ exhibition.get_absolute_url }}new_like/">
                         <i class="fa fa-heart" style="font-size:13px" aria-hidden="true"></i>
                         <p class="icon_font"> 좋아요 </p>
                     </a>
+{#                    <a class="bookmark" href="{{ exhibition.get_absolute_url }}dislike/">#}
+{#                        <i class="fa fa-heart" style="font-size:13px" aria-hidden="true"></i>#}
+{#                        <p class="icon_font"> 좋아요 </p>#}
+{#                    </a>#}
                     <a class="guest_book" href="#open">
                         <i class="fa fa-comment-alt" style="font-size:13px" aria-hidden="true"></i>
                         <p class="icon_font"> 방명록 </p>
@@ -32,13 +36,25 @@
                                 <a href="#close" class="modal-close"><i class="fas fa-times"></i></a>
 
                                 <div class="comments">
-                                    <div class="input-comment">
-                                        <textarea class="form-control" id="new_comment" name="comment" rows="3"
-                                                  placeholder="방명록을 입력해주세요"></textarea>
-                                        <button class="submit_btn" type="submit" onclick="submitComment()">OK!</button>
-                                    </div>
-                                    <!--guest book-->
-{#                                    {% if exhibition.guestbook_set %}#}
+                                    {% if user.is_authenticated %}
+                                        <form id="comment-form" method="post"
+                                              action="{{ exhibition.get_absolute_url }}new_guestbook/">
+                                            {% csrf_token %}
+                                            <div class="input-comment">
+                                                <label for="new_comment"></label>
+                                                <textarea class="form-control" id="new_comment" name="content" rows="3"
+                                                          placeholder="방명록을 입력해주세요"></textarea>
+                                                <button class="submit_btn" type="submit" onclick="submitComment()">OK!
+                                                </button>
+                                            </div>
+                                        </form>
+                                    {% else %}
+                                        <div class="input-comment">
+                                            <p>로그인을 하셔야 방명록을 남길 수 있습니다.</p>
+                                        </div>
+                                    {% endif %}
+                                    <!--guest book loop-->
+                                    {% if exhibition.guestbook_set.exists %}
                                         {% for guestbook in exhibition.guestbook_set.iterator %}
                                             <div class="comment-row">
                                                 <div class="store-comment">
@@ -46,14 +62,17 @@
                                                         <strong>{{ guestbook.user.username }}</strong>
                                                     </div>
                                                     <div class="comment-date">{{ guestbook.create_at }}</div>
-                                                    <button class="cancle-button"><i class="fas fa-times"></i></button>
+                                                    {% if guestbook.user == user and user.is_authenticated %}
+                                                        <button class="cancle-button"><i class="fas fa-times"></i>
+                                                        </button>
+                                                    {% endif %}
                                                 </div>
                                                 <div class="comment-content">{{ guestbook.content }}</div>
                                             </div>
                                         {% endfor %}
-{#                                    {% else %}#}
-{#                                        <p>아직 작성된 방명록이 없습니다! 당신이 첫번째 방명록을 달아주세여</p>#}
-{#                                    {% endif %}#}
+                                    {% else %}
+                                        <p>아직 작성된 방명록이 없습니다! 당신이 첫번째 방명록을 달아주세여</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

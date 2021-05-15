@@ -88,6 +88,9 @@ class GuestBook(models.Model):
     create_at = models.DateTimeField(auto_now_add=True, null=False)
     remove_at = models.DateTimeField(null=True, blank=True)
 
+    def get_absolute_url(self):
+        return f'/exhibition/{self.exhibition.pk}/'
+
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
@@ -95,6 +98,9 @@ class Comment(models.Model):
     content = models.TextField(null=False, blank=False)
     create_at = models.DateTimeField(auto_now_add=True, null=False)
     remove_at = models.DateTimeField(null=True, blank=True)
+
+    def get_absolute_url(self):
+        return f'/exhibition/piece/{self.piece.pk}/'
 
 
 class InitialLike(models.Model):
@@ -106,10 +112,16 @@ class ExhibitionLike(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     exhibition = models.ForeignKey(Exhibition, on_delete=models.SET_NULL, null=True, blank=True)
 
+    def get_absolute_url(self):
+        return f'/exhibition/{self.exhibition.pk}/'
+
 
 class PieceLike(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     piece = models.ForeignKey(Piece, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def get_absolute_url(self):
+        return f'/exhibition/piece/{self.piece.pk}/'
 
 
 class ExhibitionClick(models.Model):
