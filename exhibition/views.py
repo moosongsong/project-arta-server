@@ -37,7 +37,7 @@ class SinglePage:
 class ExhibitionList(ListView):
     model = Exhibition
     ordering = '-pk'
-    paginate_by = 5
+    # paginate_by = 5
     template_name = 'exhibition/ARTA_User_exhibition_list.html'
 
     def get_context_data(self, **kwargs):

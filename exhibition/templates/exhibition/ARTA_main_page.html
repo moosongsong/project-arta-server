@@ -43,6 +43,11 @@
     <div class="row">
         <div class="content_container col-xs-12">
             <div class="article_container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p><br/>
+                    {% endfor %}
+                {% endif %}
                 <article>
                     <div class="main_page">
                         <img class="main_logo" src="{% static 'exhibition/images/민트로고.png' %}" alt="ARTA">
