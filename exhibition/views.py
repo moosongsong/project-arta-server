@@ -3,27 +3,29 @@ from django.views.generic import ListView, DetailView
 from .models import Exhibition, Category, Material, Piece, Comment, GuestBook, ExhibitionLike, PieceLike
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 
 class SinglePage:
     def landing_page(request):
         return render(
             request,
-            'arta_front_develop/ARTA_main_page.html'
+            'exhibition/ARTA_main_page.html'
         )
 
     def about_page(request):
         return render(
             request,
-            'arta_front_develop/ARTA_introduction.html'
+            'exhibition/ARTA_introduction.html'
         )
 
     def login_page(request):
         return render(
             request,
-            'arta_front_develop/ARTA_User_members_login.html'
+            'exhibition/ARTA_User_login.html'
         )
 
+    # 여기서 test할 파일 집어넣어서 하시오.
     def test_page(request):
         return render(
             request,
@@ -58,7 +60,6 @@ class ExhibitionDetail(DetailView):
 
 class PieceDetail(DetailView):
     model = Piece
-
     template_name = 'exhibition/ARTA_User_piece_show.html'
 
     def get_context_data(self, **kwargs):
@@ -74,6 +75,7 @@ class CommentManage:
             if request.method == 'POST':
                 comment = Comment(content=request.POST.get('content'), piece=piece, user=request.user)
                 comment.save()
+                messages.warning(request, "댓글을 성공적으로 등록했습니다.")
                 return redirect(comment.get_absolute_url())
             else:
                 return redirect(piece.get_absolute_url())
@@ -85,6 +87,7 @@ class CommentManage:
         piece = comment.piece
         if request.user.is_authenticated and request.user == comment.user:
             comment.delete()
+            messages.warning(request, "댓글이 성공적으로 삭제되었습니다.")
             return redirect(piece.get_absolute_url())
         else:
             raise PermissionDenied
@@ -98,6 +101,7 @@ class GuestbookManage:
             if request.method == 'POST':
                 guestbook = GuestBook(content=request.POST.get('content'), exhibition=exhibition, user=request.user)
                 guestbook.save()
+                messages.warning(request, "방명록을 성공적으로 등록했습니다.")
                 return redirect(guestbook.get_absolute_url())
             else:
                 return redirect(exhibition.get_absolute_url())
@@ -109,6 +113,7 @@ class GuestbookManage:
         exhibition = guestbook.exhibition
         if request.user.is_authenticated and request.user == guestbook.user:
             guestbook.delete()
+            messages.warning(request, "방명록이 성공적으로 삭제되었습니다.")
             return redirect(exhibition.get_absolute_url())
         else:
             raise PermissionDenied
@@ -118,6 +123,11 @@ class LikeManage:
     def exhibition_like(request, pk):
         if request.user.is_authenticated:
             exhibition = get_object_or_404(Exhibition, pk=pk)
+            olderLike = ExhibitionLike.objects.filter(exhibition=exhibition, user=request.user)
+
+            if olderLike:
+                return redirect(exhibition.get_absolute_url())
+
             like = ExhibitionLike(exhibition=exhibition, user=request.user)
             like.save()
             return redirect(like.get_absolute_url())
@@ -136,6 +146,10 @@ class LikeManage:
     def piece_like(request, pk):
         if request.user.is_authenticated:
             piece = get_object_or_404(Piece, pk=pk)
+            olderLike = PieceLike.objects.filter(piece=piece, user=request.user)
+            if olderLike:
+                return redirect(piece.get_absolute_url())
+
             like = PieceLike(piece=piece, user=request.user)
             like.save()
             return redirect(like.get_absolute_url())
@@ -152,33 +166,41 @@ class LikeManage:
             return PermissionDenied
 
 
-class LikePage:
-    def all_like_page(request):
-        return render(
-            request,
-            'arta_front_develop/ARTA_LikePage.html',
-            {
-                #
-            }
-        )
+class LikePieceList(ListView):
+    model = PieceLike
+    template_name = 'exhibition/ARTA_LikePiecePage.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(LikePieceList, self).get_context_data()
+        return context
 
 
-class PiecePage:
-    def add_comment(request, pk):
-        return render(
-            request,
-            'arta_front_develop/ARTA_User_piece_show.html',
-            {
-                #
-            }
-        )
+class LikeExhibitionList(ListView):
+    model = ExhibitionLike
+    template_name = 'exhibition/ARTA_LikeExhibitionPage.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(LikeExhibitionList, self).get_context_data()
+        return context
+
+
+# class LikePage:
+#     def all_like_page(request):
+#         pieces = get_object_or_404()
+#         return render(
+#             request,
+#             'arta_front_develop/ARTA_LikePage.html',
+#             {
+
+# }
+# )
 
 
 class SearchPage:
     def search_page(request):
         return render(
             request,
-            'arta_front_develop/ARTA_search_page.html',
+            'exhibition/ARTA_search_page.html',
             {
                 #
             }
@@ -187,7 +209,7 @@ class SearchPage:
     def search_result_page(request, key):
         return render(
             request,
-            'arta_front_develop/ARTA_search_result.html',
+            'exhibition/ARTA_search_result.html',
             {
                 #
             }

@@ -7,6 +7,70 @@
     <link rel="stylesheet" href="{% static 'exhibition/css/main.css' %}"/>
     <link rel="stylesheet" href="{% static 'exhibition/css/LikePage_style.css' %}"/>
     <link rel="stylesheet" href="{% static 'exhibition/css/pagination.css' %}"/>
+    <style>
+        .category_list {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding-left: 8%;
+            overflow: visible;
+        }
+
+        li {
+            padding-right: 2%;
+            line-height: 1.3;
+            font-size: 10px;
+
+        }
+
+        li > a {
+            font-size: 10px;
+            text-decoration: none;
+        }
+
+        .category_list > li:link > a {
+            text-decoration: none;
+            color: #A0CDC5;
+            font-weight: normal;
+        }
+
+        .category_list > li:visited > a,
+        .category_list > li:active > a,
+        .category_list > li:hover > a {
+            text-decoration: none;
+            color: #5CA4A2;
+            font-weight: bold;
+        }
+
+
+        @media screen and (min-width: 992px) {
+            .category_list {
+                height: 100%;
+                display: flex;
+                align-content: center;
+                flex-direction: column;
+                flex-wrap: wrap;
+                overflow: auto;
+                padding: 0;
+            }
+
+            ul > li:first-child {
+                padding-top: 10px;
+            }
+
+            li {
+                padding-right: 0;
+                padding-bottom: 10px;
+                font-size: 15px;
+            }
+
+            li > a {
+                font-size: 15px;
+            }
+
+        }
+
+    </style>
 {% endblock %}
 
 {% block main_blcok %}
@@ -14,14 +78,14 @@
         <div class="aside_container col-md-1 col-md-push-11">
             <h2 class="h_name"> 좋아요 목록 </h2>
             <ul class="category_list">
+                {#                <li>#}
+                {#                    <a href="#">전체</a>#}
+                {#                </li>#}
                 <li>
-                    <a href="#">전체</a>
+                    <a href="/preference/exhibition/">전시회</a>
                 </li>
                 <li>
-                    <a href="#">전시회</a>
-                </li>
-                <li>
-                    <a href="#">작품</a>
+                    <a href="/preference/piece/">작품</a>
                 </li>
             </ul>
         </div>

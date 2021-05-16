@@ -38,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.kakao',
     'exhibition',
 ]
 
@@ -105,8 +110,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-#LANGUAGE_CODE = 'ko-kr'
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
+# LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Seoul'
 
@@ -130,3 +135,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/exhibition/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/exhibition/'  # 로그아웃 후 리디렉션 할 페이지
+ACCOUNT_LOGOUT_ON_GET = True  # 로그아웃 버튼 클릭 시 자동 로그아웃

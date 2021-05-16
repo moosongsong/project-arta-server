@@ -85,6 +85,13 @@
                                     </div>
                                 {% endif %}
 
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <p>{{ message }}</p>
+                                        <p></p>
+                                    {% endfor %}
+                                {% endif %}
+
                                 <!--guest book loop-->
                                 {% if exhibition.guestbook_set.exists %}
                                     {% for guestbook in exhibition.guestbook_set.iterator %}

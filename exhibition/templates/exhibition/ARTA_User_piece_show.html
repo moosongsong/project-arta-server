@@ -101,21 +101,28 @@
                         </div>
                     {% endif %}
 
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p>{{ message }}</p>
+                            <p> </p>
+                        {% endfor %}
+                    {% endif %}
+
                     <!--comment loop-->
                     {% if piece.comment_set.exists %}
                         {% for comment in piece.comment_set.iterator %}
-                        <div class="comment-row">
-                            <div class="comment_list">
-                                <div class="user_name">{{ comment.user.username }}</div>
-                                <div class="comment-date">{{ comment.create_at }}</div>
-                                {% if comment.user == user and user.is_authenticated %}
-                                            <a href="/exhibition/piece/delete_comment/{{ comment.pk }}/">
-                                                <div class="comment-delete">삭제</div>
-                                            </a>
-                                        {% endif %}
-                                <div class="comment-content">{{ comment.content }}</div>
+                            <div class="comment-row">
+                                <div class="comment_list">
+                                    <div class="user_name">{{ comment.user.username }}</div>
+                                    <div class="comment-date">{{ comment.create_at }}</div>
+                                    {% if comment.user == user and user.is_authenticated %}
+                                        <a href="/exhibition/piece/delete_comment/{{ comment.pk }}/">
+                                            <div class="comment-delete">삭제</div>
+                                        </a>
+                                    {% endif %}
+                                    <div class="comment-content">{{ comment.content }}</div>
+                                </div>
                             </div>
-                        </div>
                         {% endfor %}
                     {% else %}
                         <p>아직 작성된 댓글이 없습니다! 당신이 첫번째 댓글을 달아주세요!</p>
