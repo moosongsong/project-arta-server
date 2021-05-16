@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>전시회 목록보기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com"><!--font-->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet"><!--font-->
+
+    <link rel="stylesheet" href="../css/exhibition_list_style.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+
+
+</head>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready( function() {
+        $("#header").load("./arta_header.html");
+        $("#category_list").load("./category_list.html");
+        $("#footer").load("./footer.html");
+    });
+
+
+    $(document).ready(function() {
+
+        $(window).scroll( function(){
+            $('.exhibition_action').each( function(i){
+                var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+                var top_of_object = $(this).offset().top;
+                var middle_of_window = $(window).scrollTop() + $(window).height()/2;
+                var windowWidth = $(window).width();
+
+                if( windowWidth < 992 && middle_of_window > top_of_object && middle_of_window < bottom_of_object){
+                    //$(this).animate({'opacity':'1','margin-left':'0px'},500);
+                    if ($(this).css("opacity")==0) {$(this).fadeTo(500,1);}
+                } else { //object goes out of view (scrolling up)
+                    if ($(this).css("opacity")==1) {$(this).fadeTo(500,0);}
+                }
+
+            });
+        });
+    });
+</script>
+
+<body>
+<div class="container-fluid">
+    <header id = "header"></header>
+    <div class="row">
+        <div class="aside_container col-md-1 col-md-push-11">
+            <div id="category_list"></div>
+        </div>
+        <div class="content_container col-md-11 col-md-pull-1">
+            <div class="article_container">
+                <div class="article_block">
+                    <h2>전시회 리스트1</h2>
+                    <div class="exhibition_img_block">
+                        <a href="./user_exhibition_show.html" class="img_block">
+                            <img class= "exhibition_img" src="https://i.imgur.com/hiTuxfv.jpeg" alt="전시회1 포스터"/>
+                            <div class="exhibition_action">
+                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+                </div>
+
+                <div class="article_block">
+                    <div class="exhibition_img_block">
+                        <a href="./user_exhibition_show.html" class="img_block">
+                            <img class= "exhibition_img" src="https://i.imgur.com/YBIac9k.jpg" alt="전시회2 포스터"/>
+                            <div class="exhibition_action">
+                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+                </div>
+                <div class="article_block">
+                    <div class="exhibition_img_block">
+                        <a href="./user_exhibition_show.html" class="img_block">
+                            <img class= "exhibition_img" src="https://newsimg.hankookilbo.com/cms/articlerelease/2018/10/26/201810260888392821_1.jpg" alt="전시회3 포스터"/>
+                            <div class="exhibition_action">
+                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?</p>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+                </div>
+                <div class="article_block">
+                    <div class="exhibition_img_block">
+                        <a href="./user_exhibition_show.html" class="img_block">
+                            <img class= "exhibition_img" src="http://img.sportsworldi.com/content/image/2020/11/05/20201105519244.jpg" alt="전시회4 포스터"/>
+                            <div class="exhibition_action">
+                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요??? 저는 이게 맞는 지도 모르겠고 어쩌구 저쩌구 너무 길면 어떻게 되는 것인가요?</p>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibitor">전시자명</p>
+                    </a>
+                    <a href="./user_exhibition_show.html">
+                        <p class="exhibition_name">전시회 이름</p>
+                    </a>
+            </div>
+
+            </div>
+        </div>
+    </div>
+    <footer id = "footer"></footer>
+</div>
+</body>
+</html>

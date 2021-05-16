@@ -28,7 +28,7 @@ class SinglePage:
         return render(
             request,
             # add pages here
-            'arta_front_develop/ARTA_User_members_login.html'
+            'exhibition/ARTA_User_login.html'
         )
 
 
@@ -36,6 +36,7 @@ class ExhibitionList(ListView):
     model = Exhibition
     ordering = '-pk'
     paginate_by = 5
+    template_name = 'exhibition/ARTA_User_exhibition_list.html'
 
     def get_context_data(self, **kwargs):
         context = super(ExhibitionList, self).get_context_data()
@@ -47,6 +48,8 @@ class ExhibitionList(ListView):
 class ExhibitionDetail(DetailView):
     model = Exhibition
 
+    template_name = 'exhibition/ARTA_User_exhibition_show.html'
+
     def get_context_data(self, **kwargs):
         context = super(ExhibitionDetail, self).get_context_data()
         context['categories'] = Category.objects.all()
@@ -55,6 +58,8 @@ class ExhibitionDetail(DetailView):
 
 class PieceDetail(DetailView):
     model = Piece
+
+    template_name = 'exhibition/ARTA_User_piece_show.html'
 
     def get_context_data(self, **kwargs):
         context = super(PieceDetail, self).get_context_data()
@@ -110,7 +115,7 @@ class GuestbookManage:
 
 
 class LikeManage:
-    def new_exhibition_like(request, pk):
+    def exhibition_like(request, pk):
         if request.user.is_authenticated:
             exhibition = get_object_or_404(Exhibition, pk=pk)
             like = ExhibitionLike(exhibition=exhibition, user=request.user)
@@ -128,7 +133,7 @@ class LikeManage:
         else:
             return PermissionDenied
 
-    def new_piece_like(request, pk):
+    def piece_like(request, pk):
         if request.user.is_authenticated:
             piece = get_object_or_404(Piece, pk=pk)
             like = PieceLike(piece=piece, user=request.user)

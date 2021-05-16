@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>ARTA 검색</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/search.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com"> <!--font-->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet"><!--font-->
+
+    <script type="text/javascript">$(document).ready( function() {$("#header").load("./arta_header.html");});</script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <header id="header"></header>
+
+    <div class="row">
+        <div class="aside_container col-md-1 col-md-push-11">
+            <p class="search_top">검색</p> <!--모바일 버전에서만 보임-->
+        </div>
+        <div class="content_container col-md-11 col-md-pull-1">
+            <div class="article_container">
+              <div class="search_page">
+                <div class="nav_search col-lg-3"> <!--search 부분 nav-->
+                  <a href="">전체</a>
+                  <a href="">전시회</a>
+                  <a href="">작가</a>
+                </div>
+                <form action="/action_page.php"> <!--검색-->
+                    <div class="input-group col-lg-9">
+
+                        <input type="text" id="text" class="form-control" placeholder="검색어를 입력해주세요" name="search">
+                        <div class="input-group-btn">
+                          <button id="btn_click" class="btn search_btn" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                          </button>
+                        </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="footer col-xs-12"> <!--아래 페이징 공간-->
+        </div>
+    </div>
+</div>
+</body>
+</html>

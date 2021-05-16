@@ -15,13 +15,13 @@ urlpatterns = [
     path('exhibition/<int:pk>/', views.ExhibitionDetail.as_view()),
     path('exhibition/<int:pk>/new_guestbook/', views.GuestbookManage.new_guestbook),
     path('exhibition/delete_guestbook/<int:pk>/', views.GuestbookManage.delete_guestbook),
-    path('exhibition/<int:pk>/new_like/', views.LikeManage.new_exhibition_like),
+    path('exhibition/<int:pk>/new_like/', views.LikeManage.exhibition_like),
     path('exhibition/<int:pk>/dislike/', views.LikeManage.exhibition_dislike),
 
     path('exhibition/piece/<int:pk>/', views.PieceDetail.as_view()),
     path('exhibition/piece/<int:pk>/new_comment/', views.CommentManage.new_comment),
     path('exhibition/piece/delete_comment/<int:pk>/', views.CommentManage.delete_comment),
-    path('exhibition/piece/<int:pk>/new_like/', views.LikeManage.new_piece_like),
+    path('exhibition/piece/<int:pk>/new_like/', views.LikeManage.piece_like),
     path('exhibition/piece/<int:pk>/dislike/', views.LikeManage.piece_dislike),
 
 ]
