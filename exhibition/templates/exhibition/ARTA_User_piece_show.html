@@ -3,6 +3,7 @@
 {% block header_title %}<title>ARTA 작품 보기</title>{% endblock %}
 
 {% block script_blcok %}
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
         //카카오 공유
         function shareKakao() {
@@ -16,8 +17,8 @@
                     description: "ARTA 입니다",
                     imageUrl: "http://fine-village.co.kr/",
                     link: {
-                        mobileWebUrl: "http://fine-village.co.kr/",
-                        webUrl: "http://fine-village.co.kr/"
+                        mobileWebUrl: "http://fine-village.co.kr/", //카카오 앱
+                        webUrl: "http://fine-village.co.kr/"  //카카오 PC
                     }
                 }
             });
