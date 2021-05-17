@@ -28,6 +28,22 @@
     <link rel="stylesheet" href="{% static 'exhibition/css/main.css' %}"/>
     <link rel="stylesheet" href="{% static 'exhibition/css/user_piece_show.css' %}"/>
     <link rel="stylesheet" href="{% static 'exhibition/css/pagination.css' %}"/>
+
+    <style>
+      .exhibitor, .piece_name {
+        font-weight: bold;
+      }
+      @media screen and (min-width: 768px) and (max-width: 991px) {
+        .aside_container {
+          display: none;
+        }
+      }
+      @media screen and (min-width: 992px) {
+        .aside_nav {
+          display: none;
+        }
+      }
+    </style>
 {% endblock %}
 
 {% block main_blcok %}
@@ -41,9 +57,9 @@
             <div class="article_container">
                 <div class="row row_content">
                     <div class="form-group">
-                        <p class="piece_name col-xs-6"><strong>{{ piece.name }}</strong></p>
-                        <p class="exhibitor col-xs-6"><strong>{{ piece.author }} - {{ piece.major }}
-                            ({{ piece.number }})</strong></p>
+                        <p class="piece_name col-xs-6">{{ piece.name }}</p>
+                        <p class="exhibitor col-xs-6">{{ piece.author }} - {{ piece.major }}
+                            ({{ piece.number }})</p>
                     </div>
                 </div>
 
@@ -72,7 +88,7 @@
                     </div>
                 </div>
 
-                <div class="icon row"> <!--공유 버튼, 좋아요 버튼-->
+                <div class="icon"> <!--공유 버튼, 좋아요 버튼-->
                     <a class="share" id="btnKakao" href="javascript:shareKakao();"><i class="fa fa-share-alt"
                                                                                       aria-hidden="true"></i></a>
                     <a class="bookmark" href="{{ piece.get_absolute_url }}new_like/"><i class="fa fa-heart"
