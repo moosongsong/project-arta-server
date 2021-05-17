@@ -16,6 +16,7 @@
             justify-content: center;
             align-items: center;
             min-height: 90vh;
+            margin: 0 auto;
         }
 
         .main_logo {
@@ -31,7 +32,6 @@
 
         @media screen and (min-width: 992px) {
             .main_logo {
-
                 width: 520px;
                 height: 170px;
             }
@@ -48,11 +48,12 @@
                         <p>{{ message }}</p><br/>
                     {% endfor %}
                 {% endif %}
-                <article>
-                    <div class="main_page">
-                        <img class="main_logo" src="{% static 'exhibition/images/민트로고.png' %}" alt="ARTA">
-                    </div>
-                </article>
+                <div class="main_page">
+                    <img class="main_logo" src="{% static 'exhibition/images/민트로고.png' %}" alt="ARTA">
+                </div>
+                <!-- <article>
+
+                </article> -->
             </div>
         </div>
     </div>
