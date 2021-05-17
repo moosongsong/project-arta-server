@@ -4,6 +4,7 @@ from .models import Exhibition, Category, Material, Piece, Comment, GuestBook, E
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.db.models import Q
 
 
 class SinglePage:
@@ -37,7 +38,7 @@ class SinglePage:
 class ExhibitionList(ListView):
     model = Exhibition
     ordering = '-pk'
-    # paginate_by = 5
+    paginate_by = 5
     template_name = 'exhibition/ARTA_User_exhibition_list.html'
 
     def get_context_data(self, **kwargs):
@@ -55,6 +56,25 @@ class ExhibitionDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ExhibitionDetail, self).get_context_data()
         context['categories'] = Category.objects.all()
+        return context
+
+
+class PieceList(ListView):
+    model = Piece
+    ordering = 'pk'
+    paginate_by = 8
+
+    def get_queryset(self):
+        exhibition_id = self.kwargs['pk']
+        piece_list = Piece.objects.filter(Q(exhibition_id=exhibition_id))
+        return piece_list
+
+    def get_context_data(self, **kwargs):
+        context = super(PieceList, self).get_context_data()
+        pk = self.kwargs['pk']
+        context['exhibition'] = get_object_or_404(Exhibition, pk=pk)
+        context['categories'] = Category.objects.all()
+        context['materials'] = Material.objects.all()
         return context
 
 
@@ -184,16 +204,39 @@ class LikeExhibitionList(ListView):
         return context
 
 
-# class LikePage:
-#     def all_like_page(request):
-#         pieces = get_object_or_404()
-#         return render(
-#             request,
-#             'arta_front_develop/ARTA_LikePage.html',
-#             {
+class ExhibitionSearch(ListView):
+    model = Exhibition
+    template_name = 'exhibition/ARTA_search_result.html'
+    paginate_by = 6
 
-# }
-# )
+    def get_queryset(self):
+        q = self.kwargs['q']
+        piece_list = Exhibition.objects.filter(
+            Q(name__contains=q) | Q(category__smallName__contains=q)).distinct()
+        return piece_list
+
+    def get_context_data(self, **kwargs):
+        context = super(ExhibitionSearch, self).get_context_data()
+        q = self.kwargs['q']
+        context['search_info'] = f'{q}'
+        return context
+
+
+class PieceSearch(ListView):
+    model = Piece
+    template_name = 'exhibition/ARTA_search_result.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        q = self.kwargs['q']
+        piece_list = Piece.objects.filter(Q(name__contains=q) | Q(author__contains=q) | Q(major__contains=q)).distinct()
+        return piece_list
+
+    def get_context_data(self, **kwargs):
+        context = super(PieceSearch, self).get_context_data()
+        q = self.kwargs['q']
+        context['search_info'] = f'{q}'
+        return context
 
 
 class SearchPage:
@@ -201,15 +244,6 @@ class SearchPage:
         return render(
             request,
             'exhibition/ARTA_search_page.html',
-            {
-                #
-            }
-        )
-
-    def search_result_page(request):
-        return render(
-            request,
-            'exhibition/ARTA_search_result.html',
             {
                 #
             }

@@ -39,72 +39,64 @@
             <div class="article_container"> <!--내용-->
                 <div class="search_page col-lg-9">
                     <div class="nav_search col-lg-3"> <!--search 부분 nav-->
-                        <a href="">전체</a>
-                        <a href="">전시회</a>
-                        <a href="">작가</a>
+                        <label>
+                            {#                            <input type='radio' name='service_type' value='all'>전체#}
+                            {% if piece_list %}
+                                <input type='radio' name='service_type' value='exhibition'>전시회
+                                <input type='radio' name='service_type' value='piece' checked="checked">그림
+                            {% elif exhibition_list %}
+                                <input type='radio' name='service_type' value='exhibition' checked="checked">전시회
+                                <input type='radio' name='service_type' value='piece'>그림
+                            {% endif %}
+                        </label>
                     </div>
-                    <form action="/action_page.php"> <!--검색-->
-                        <div class="input-group col-lg-9">
-                            <input type="text" id="text" class="form-control" placeholder="검색어를 입력해주세요" name="search">
-                            <div class="input-group-btn">
-                                <button id="btn_click" class="btn search_btn" type="submit">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                            </div>
+                    <div class="input-group col-lg-9">
+                        <label for="search-input"></label>
+                        <input type="text" id="search-input" class="form-control" placeholder="검색어를 입력해주세요"
+                               name="search">
+                        <div class="input-group-btn">
+                            <button id="btn_click" class="btn search_btn" type="button" onclick="function searchPost() {
+                                let searchValue = document.getElementById('search-input').value.trim();
+                                if (searchValue.length > 1){
+                                    let radioVal = $('input[name=service_type]:checked').val();
+                                    location.href='/search/result/'+radioVal+'/'+searchValue+'/';
+                                }
+                                else {
+                                    alert('검색어 ('+searchValue+')가 너무 짧습니다.');
+                                }
+                                }
+                                searchPost()">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
                         </div>
-                    </form>
+                    </div>
 
                     <div class="row">
                         <div class="result_page"> <!--결과 페이지 : 모바일 2*4 / 웹 4*2 -->
-                            <p class="result_comment">"정우" 검색 결과입니다.</p>
-                            <div class="col-xs-6 col-lg-3">
-                                <div class="select_image">
-                                    <a href="#"><img src="../../static/exhibition/images/보스%20정우.jpg" style="width:100%"
-                                                     class="selection_img"></a>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-lg-3">
-                                <div class="select_image">
-                                    <a href="#"><img src="../../static/exhibition/images/보스%20정우.jpg" style="width:100%"
-                                                     class="selection_img"></a>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-lg-3">
-                                <div class="select_image">
-                                    <a href="#"><img src="../../static/exhibition/images/보스%20정우.jpg" style="width:100%"
-                                                     class="selection_img"></a>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-lg-3">
-                                <div class="select_image">
-                                    <a href="#"><img src="../../static/exhibition/images/보스%20정우.jpg" style="width:100%"
-                                                     class="selection_img"></a>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-lg-3">
-                                <div class="select_image">
-                                    <a href="#"><img src="../../static/exhibition/images/보스%20정우.jpg" style="width:100%"
-                                                     class="selection_img"></a>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-lg-3">
-                                <div class="select_image">
-                                    <a href="#"><img src="../../static/exhibition/images/보스%20정우.jpg" style="width:100%"
-                                                     class="selection_img"></a>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-lg-3">
-                                <div class="select_image">
-                                    <a href="#"><img src="../../static/exhibition/images/보스%20정우.jpg" style="width:100%"
-                                                     class="selection_img"></a>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-lg-3">
-                                <div class="select_image">
-                                    <a href="#"><img src="../../static/exhibition/images/보스%20정우.jpg" style="width:100%"
-                                                     class="selection_img"></a>
-                                </div>
-                            </div>
+                            <p class="result_comment">"{{ search_info }}" 검색 결과입니다.</p>
+                            {% if piece_list %}
+                                {% for piece in piece_list %}
+                                    <div class="col-xs-6 col-lg-3">
+                                        <div class="select_image">
+                                            <a href="{{ piece.get_absolute_url }}">
+                                                <img src="{{ piece.image.url }}" style="width:100%"
+                                                     class="selection_img" alt="image"></a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% elif exhibition_list %}
+                                {% for exhibition in exhibition_list %}
+                                    <div class="col-xs-6 col-lg-3">
+                                        <div class="select_image">
+                                            <a href="{{ exhibition.get_absolute_url }}">
+                                                <img src="{{ exhibition.poster.url }}" style="width:100%"
+                                                     class="selection_img" alt="poster"></a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p>검색 결과가 없습니다.</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -114,14 +106,53 @@
     <div class="row">
         <div class="footer_row col-xs-12"> <!--아래 페이징 공간-->
             <footer>
-                <ul class="pagination pagination-sm">
-                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-left"
-                                                                           aria-hidden="true"></i></a></li>
-                    <li class="page-item"><a class="page-fake" href="#"><i class="" aria-hidden="true"></i></a></li>
-                    <li class="page-item"><a class="page-fake" href="#"><i class="" aria-hidden="true"></i></a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-right"
-                                                                           aria-hidden="true"></i></a></li>
-                </ul>
+                {% if is_paginated %}
+                    <ul class="pagination pagination-sm">
+                        {% if page_obj.has_next %}
+                            {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="?page={{ page_obj.previous_page_number }}">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% endif %}
+                        {% else %}
+                            {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="?page={{ page_obj.previous_page_number }}">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                {% endif %}
             </footer>
         </div>
     </div>
