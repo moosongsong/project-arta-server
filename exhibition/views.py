@@ -248,3 +248,18 @@ class SearchPage:
                 #
             }
         )
+
+
+class CategoryManage:
+    def category_page(request, slug):
+        category = Category.objects.get(slug=slug)
+
+        return render(
+            request,
+            'exhibition/ARTA_User_exhibition_list.html',
+            {
+                'exhibition_list': Exhibition.objects.filter(category=category),
+                'categories': Category.objects.all(),
+                'category': category,
+            }
+        )

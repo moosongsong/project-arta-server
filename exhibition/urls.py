@@ -18,6 +18,7 @@ urlpatterns = [
     path('exhibition/', views.ExhibitionList.as_view()),
     # path('exhibition/<int:pk>/', views.ExhibitionDetail.as_view()),
     path('exhibition/<int:pk>/', views.PieceList.as_view()),
+    path('exhibition/category/<str:slug>/', views.CategoryManage.category_page),
     path('exhibition/<int:pk>/new_guestbook/', views.GuestbookManage.new_guestbook),
     path('exhibition/delete_guestbook/<int:pk>/', views.GuestbookManage.delete_guestbook),
     path('exhibition/<int:pk>/new_like/', views.LikeManage.exhibition_like),
