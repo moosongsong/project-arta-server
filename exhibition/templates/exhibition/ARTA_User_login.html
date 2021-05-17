@@ -7,6 +7,16 @@
 {% block style_blcok %}
     <link rel="stylesheet" href="{% static 'exhibition/css/main.css' %}"/>
     <style>
+      label {
+        font-size: 15px;
+        font-weight: normal;
+      }
+      .login {
+        min-height: 90vh;
+      }
+      .insert_e {
+        padding-top: 10px;
+      }
         #InputEmail {
             border: 1px solid #5CA4A2;
         }
@@ -32,6 +42,9 @@
             border-radius: 5px;
             font-size: 12px;
         }
+        .btn_s {
+          padding-bottom: 5px;
+        }
 
         .form-signin input[type="email"] {
             margin-bottom: 15px;
@@ -41,9 +54,23 @@
             margin-bottom: 15px;
         }
 
+        @media screen and (max-width: 768px) {
+          .form-signin-heading {
+            display: none;
+          }
+        }
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+          .aside_container {
+            display: none;
+          }
+        }
         @media screen and (min-width: 992px) {
             .login_top {
                 display: none;
+            }
+            .form-signin-heading {
+              font-weight: bold;
+              padding-left: 5px;
             }
         }
     </style>
@@ -55,53 +82,49 @@
         </div>
         <div class="content_container col-md-11 col-md-pull-1">
             <div class="article_container">
-                <article>
-                    <div class="col-sm-4">
-                        <div class="login">
-                            <form class="form-signin">
-                                <h4 class="form-signin-heading">로그인</h4>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label for="InputEmail">이메일</label>
-                                        <input type="email" id="InputEmail" class="form-control"
-                                               placeholder="이메일을 입력하세요">
-                                    </div>
-                                </div>
+              <div class="login col-sm-4">
+                  <form class="form-signin">
+                      <h4 class="form-signin-heading">로그인</h4>  <!--글자 크기-->
+                      <div class="row insert_e">
+                          <div class="col-md-12">
+                              <label for="InputEmail">이메일</label>
+                              <input type="email" id="InputEmail" class="form-control"
+                                     placeholder="이메일을 입력하세요">
+                          </div>
+                      </div>
 
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label for="InputPassword">비밀번호</label>
-                                        <input type="password" id="InputPassword" class="form-control"
-                                               placeholder="비밀번호">
-                                    </div>
-                                </div>
+                      <div class="row insert_p">
+                          <div class="col-md-12">
+                              <label for="InputPassword">비밀번호</label>
+                              <input type="password" id="InputPassword" class="form-control"
+                                     placeholder="비밀번호">
+                          </div>
+                      </div>
 
-                                <div class="row">
-                                    <div class="col-md-6 col-xs-6">
-                                        <button class="login_btn btn-block" type="submit">로그인</button>
-                                    </div>
-                                    <div class="col-md-6 col-xs-6">
-                                        <button class="password_btn btn-block">비밀번호 찾기</button>
-                                    </div>
-                                </div>
+                      <div class="row btn_s">
+                          <div class="col-md-6 col-xs-6">
+                              <button class="login_btn btn-block" type="submit">로그인</button>
+                          </div>
+                          <div class="col-md-6 col-xs-6">
+                              <button class="password_btn btn-block">비밀번호 찾기</button>
+                          </div>
+                      </div>
 
-                                <div class="row">
-                                    <div class="col-xs-12 text-center">
-                                        <a class="login_btn btn-block"
-                                           href="{% provider_login_url 'kakao' method='oauth2' %}">
-                                            <img src="https://simpleicons.org/icons/kakaotalk.svg" height="20pt">
-                                            &nbsp;&nbsp;카카오 로그인
-                                        </a>
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="row">
-                                <div class="footer col-xs-12" style="height: 50px"> <!--아래 페이징 공간-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+                      <div class="row">
+                          <div class="col-xs-12 text-center">
+                              <a class="login_btn btn-block"
+                                 href="{% provider_login_url 'kakao' method='oauth2' %}">
+                                  <img src="https://simpleicons.org/icons/kakaotalk.svg" height="20pt">
+                                  &nbsp;&nbsp;카카오 로그인
+                              </a>
+                          </div>
+                      </div>
+                  </form>
+                  <div class="row">
+                      <div class="footer col-xs-12" style="height: 50px"> <!--아래 페이징 공간-->
+                      </div>
+                  </div>
+              </div>
             </div>
         </div>
     </div>
