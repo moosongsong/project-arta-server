@@ -13,8 +13,8 @@
                 container: '#btnKakao',
                 objectType: 'feed',
                 content: {
-                    title: "ARTA",
-                    description: "ARTA 입니다",
+                    title: "{{ piece.name }} - {{ piece.author }}",
+                    description: "{{ piece.explain | truncatewords:12 }}",
                     imageUrl: "http://fine-village.co.kr/",
                     link: {
                         mobileWebUrl: window.location.href,  //카카오 앱
