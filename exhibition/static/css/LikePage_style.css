@@ -34,7 +34,7 @@
     padding: 2%;
     object-fit: contain;
 }
-
+/*
 .exhibition_action::after{
     width: 100%;
     height: 100%;
@@ -45,7 +45,7 @@
     left: 0;
     z-index: -1;
 }
-
+*/
 .exhibition_action{
     position: absolute;
     top: 0;
@@ -55,22 +55,24 @@
     opacity: 0;
     padding: 10%;
     z-index: 1;
+    background-color: #ffffff;
+    background-color: rgba( 255, 255, 255, 0.5 );
 }
 
 .exhibition_action p{
     height: 100%;
     color: black;
-    font-size: 13px;
+    font-size: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     vertical-align: middle;
 }
-
+/*
 .exhibition_img_block a:hover .exhibition_action::after{
     opacity: 50%;
 }
-
+*/
 .exhibition_img_block a:hover .exhibition_action {
     opacity: 100%;
 }
@@ -160,18 +162,18 @@ li{
     li {
         padding-right: 0;
         padding-bottom: 10px;
-        font-size: 15px;
+        font-size: 20px;
     }
 
     li > a{
-        font-size: 15px;
+        font-size: 20px;
     }
 
     .h_name{
         display: block;
         position: relative;
         padding-top: 5px;
-        font-size: 15px;
+        font-size: 20px;
         text-align: center;
         font-weight: bold;
     }
@@ -179,15 +181,15 @@ li{
 
 }
 
-.category_list > li:link > a{
+.category_list > li > a:link{
     text-decoration: none;
     color: #A0CDC5;
     font-weight: normal;
 }
 
-.category_list > li:visited > a,
-.category_list > li:active > a,
-.category_list > li:hover > a {
+.category_list > li > a:visited,
+.category_list > li > a:active,
+.category_list > li > a:hover {
     text-decoration: none;
     color: #5CA4A2;
     font-weight: bold;

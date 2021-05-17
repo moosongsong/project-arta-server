@@ -9,11 +9,11 @@
 li {
     padding-right: 2%;
     line-height: 1.3;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 li > a {
-    font-size: 10px;
+    font-size: 15px;
     text-decoration: none;
 }
 
@@ -26,12 +26,9 @@ li > a {
 .category_list > li:visited > a,
 .category_list > li:active > a,
 .category_list > li:hover > a {
-    text-decoration: none;
-!important;
-    color: #5CA4A2;
-!important;
-    font-weight: bold;
-!important;
+    text-decoration: none;!important;
+    color: #5CA4A2;!important;
+    font-weight: bold;!important;
 }
 
 
@@ -53,11 +50,11 @@ li > a {
     li {
         padding-right: 0;
         padding-bottom: 10px;
-        font-size: 15px;
+        font-size: 20px;
     }
 
     li > a {
-        font-size: 15px;
+        font-size: 20px;
     }
 
 }
