@@ -206,7 +206,7 @@ class SearchPage:
             }
         )
 
-    def search_result_page(request, key):
+    def search_result_page(request):
         return render(
             request,
             'exhibition/ARTA_search_result.html',

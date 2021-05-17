@@ -202,7 +202,8 @@
                         <a href="/accounts/logout/">로그아웃 <small>log out</small></a>
                         <p>{{ user.username }}님 반갑습니다.</p>
                     {% else %}
-                        <a href="{% provider_login_url 'kakao' method='oauth2' %}"><img src="https://simpleicons.org/icons/kakaotalk.svg" height="30pt">&nbsp&nbsp Log in with Kakao <small>log in</small></a>
+{#                        <a href="{% provider_login_url 'kakao' method='oauth2' %}"><img src="https://simpleicons.org/icons/kakaotalk.svg" height="30pt">&nbsp&nbsp Log in with Kakao <small>log in</small></a>#}
+                        <a href="/login/">로그인 <small>log in</small></a>
                     {% endif %}
                 </div>
                 <span class="menu_icon" style="cursor:pointer" onclick="openNav()">&#9776; </span>
