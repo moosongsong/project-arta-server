@@ -3,6 +3,7 @@
 {% block header_title %}<title>전시회 보기</title>{% endblock %}
 
 {% block script_blcok %}
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -15,7 +16,6 @@
                     var windowWidth = $(window).width();
 
                     if (windowWidth < 992 && middle_of_window > top_of_object && middle_of_window < bottom_of_object) {
-                        //$(this).animate({'opacity':'1','margin-left':'0px'},500);
                         if ($(this).css("opacity") == 0) {
                             $(this).fadeTo(500, 1);
                         }
@@ -28,6 +28,15 @@
                 });
             });
         });
+
+            $("#open").click(function(){
+            $("#modal").attr("style", "display:block");
+        });
+
+            $("#close").click(function(){
+            $("#modal").attr("style", "display:none");
+        });
+
     </script>
 {% endblock %}
 {% block style_blcok %}
@@ -39,7 +48,7 @@
     <div class="row">
         <div class="aside_container col-md-1 col-md-push-11">
             <p class="main_name"> 전시회 페이지</p>
-            <div class="icon row">
+            <div class="icon_row">
                 <!--share icon-->
                 <a class="share" id="btnKakao" href="javascript:shareKakao();">
                     <i class="fa fa-share-alt" style="font-size:13px" aria-hidden="true"></i>
@@ -47,7 +56,8 @@
                 </a>
                 <!--like icon-->
                 <a class="bookmark" href="{{ exhibition.get_absolute_url }}new_like/">
-                    <i class="fa fa-heart" style="font-size:13px" aria-hidden="true"></i>
+                    <!--<i class="fa fa-heart" style="font-size:13px" aria-hidden="true"></i>-->
+                    <i class="fa fa-heart red" style="font-size:13px" aria-hidden="true"></i>
                     <p class="icon_font"> 좋아요 </p>
                 </a>
                 {#                    <a class="bookmark" href="{{ exhibition.get_absolute_url }}dislike/">#}
@@ -55,14 +65,14 @@
                 {#                        <p class="icon_font"> 좋아요 취소 </p>#}
                 {#                    </a>#}
                 <!--guestbook icon-->
-                <a class="guest_book" href="#open">
+                <a class="guest_book">
                     <i class="fa fa-comment-alt" style="font-size:13px" aria-hidden="true"></i>
                     <p class="icon_font"> 방명록 </p>
 
                     <div class="modal-hidden" id="open">
-                        <div class="modal-Box">
+                        <div class="modal-Box" id="modal">
                             <p class="modal-name">전시회 방명록</p>
-                            <a href="#close" class="modal-close"><i class="fas fa-times"></i></a>
+                            <a class="modal-close" id="close"><i class="fas fa-times"></i></a>
 
                             <!--guestbook list-->
                             <div class="comments">

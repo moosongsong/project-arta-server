@@ -34,73 +34,6 @@
     <link rel="stylesheet" href="{% static 'exhibition/css/main.css' %}"/>
     <link rel="stylesheet" href="{% static 'exhibition/css/exhibition_list_style.css' %}"/>
     <link rel="stylesheet" href="{% static 'exhibition/css/pagination.css' %}"/>
-    <style>
-        .category_list {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding-left: 8%;
-            overflow: visible;
-        }
-
-        li {
-            padding-right: 2%;
-            line-height: 1.3;
-            font-size: 15px;
-
-        }
-
-        li > a {
-            font-size: 15px;
-            text-decoration: none;
-        }
-
-        .category_list > li:link > a {
-            text-decoration: none;
-            color: #A0CDC5;
-            font-weight: normal;
-        }
-
-        .category_list > li:visited > a,
-        .category_list > li:active > a,
-        .category_list > li:hover > a {
-            text-decoration: none;
-        !important;
-            color: #5CA4A2;
-        !important;
-            font-weight: bold;
-        !important;
-        }
-
-
-        @media screen and (min-width: 992px) {
-            .category_list {
-                height: 100%;
-                display: flex;
-                align-content: center;
-                flex-direction: column;
-                flex-wrap: wrap;
-                overflow: auto;
-                padding: 0;
-            }
-
-            ul > li:first-child {
-                padding-top: 10px;
-            }
-
-            li {
-                padding-right: 0;
-                padding-bottom: 10px;
-                font-size: 20px;
-            }
-
-            li > a {
-                font-size: 20px;
-            }
-
-        }
-
-    </style>
 {% endblock %}
 
 {% block main_blcok %}
@@ -111,7 +44,8 @@
                 <h2>CATEGORY</h2>
                 <ul class="category_list">
                     <li>
-                        <a href="#">전체</a>
+                        <!--<a href="#">전체</a>-->
+                        <a href="#" class="list_bold">전체</a>
                     </li>
                     {% if categories.exists %}
                         {% for category in categories %}
@@ -129,7 +63,6 @@
                 {% if exhibition_list %}
                     {% for exhibition in exhibition_list %}
                         <div class="article_block">
-                            <h2>{{ exhibition.name }}</h2>
                             <div class="exhibition_img_block">
                                 <a href="{{ exhibition.get_absolute_url }}" class="img_block">
                                     <img class="exhibition_img" src="{{ exhibition.poster.url }}"

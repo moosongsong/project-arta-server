@@ -2,73 +2,39 @@
 {% load static %}
 {% block header_title %}<title>좋아요 목록보기</title>{% endblock %}
 
-{% block script_blcok %}{% endblock %}
+{% block script_blcok %}
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(window).scroll(function () {
+                $('.exhibition_action').each(function (i) {
+                    var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+                    var top_of_object = $(this).offset().top;
+                    var middle_of_window = $(window).scrollTop() + $(window).height() / 2;
+                    var windowWidth = $(window).width();
+
+                    if (windowWidth < 992 && middle_of_window > top_of_object && middle_of_window < bottom_of_object) {
+                        //$(this).animate({'opacity':'1','margin-left':'0px'},500);
+                        if ($(this).css("opacity") == 0) {
+                            $(this).fadeTo(500, 1);
+                        }
+                    } else { //object goes out of view (scrolling up)
+                        if ($(this).css("opacity") == 1) {
+                            $(this).fadeTo(500, 0);
+                        }
+                    }
+
+                });
+            });
+        });
+    </script>
+{% endblock %}
 {% block style_blcok %}
     <link rel="stylesheet" href="{% static 'exhibition/css/main.css' %}"/>
     <link rel="stylesheet" href="{% static 'exhibition/css/LikePage_style.css' %}"/>
     <link rel="stylesheet" href="{% static 'exhibition/css/pagination.css' %}"/>
-    <style>
-        .category_list {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding-left: 8%;
-            overflow: visible;
-        }
 
-        li {
-            padding-right: 2%;
-            line-height: 1.3;
-            font-size: 10px;
-
-        }
-
-        li > a {
-            font-size: 10px;
-            text-decoration: none;
-        }
-
-        .category_list > li:link > a {
-            text-decoration: none;
-            color: #A0CDC5;
-            font-weight: normal;
-        }
-
-        .category_list > li:visited > a,
-        .category_list > li:active > a,
-        .category_list > li:hover > a {
-            text-decoration: none;
-            color: #5CA4A2;
-            font-weight: bold;
-        }
-
-
-        @media screen and (min-width: 992px) {
-            .category_list {
-                height: 100%;
-                display: flex;
-                align-content: center;
-                flex-direction: column;
-                flex-wrap: wrap;
-                overflow: auto;
-                padding: 0;
-            }
-
-            ul > li:first-child {
-                padding-top: 10px;
-            }
-
-            li {
-                padding-right: 0;
-                padding-bottom: 10px;
-                font-size: 15px;
-            }
-
-            li > a {
-                font-size: 15px;
-            }
-        }
-    </style>
 {% endblock %}
 
 {% block main_blcok %}
@@ -77,7 +43,7 @@
             <h2 class="h_name"> 좋아요 목록 </h2>
             <ul class="category_list">
                 <li>
-                    <a href="/preference/exhibition/">전시회</a>
+                    <a href="/preference/exhibition/" class="list_bold">전시회</a>
                 </li>
                 <li>
                     <a href="/preference/piece/">작품</a>

@@ -41,6 +41,45 @@ p{
   padding-bottom: 0.5%;
   margin: 0;
 }
+/*Reset*/
+a {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  color: #5CA4A2;
+}
+
+button, input {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active {
+  outline: none;
+  box-shadow: none;
+}
+
+ul,
+li {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  list-style-type: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:active,
+a:hover {
+  text-decoration: none;
+  font-weight: bold;
+}
 
 @media screen and (min-width: 992px) and (max-width: 1024px) {
 
@@ -78,45 +117,4 @@ p{
 
 }
 
-/*Reset CSS*/
-a {
-  font-family: 'Noto Sans KR', sans-serif;
-  color: inherit;
-  font-size: 15px;
-  text-decoration: none;
-  color: #5CA4A2;
-}
-
-button, input {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 15px;
-}
-
-button:focus,
-button:active,
-input:focus,
-input:active {
-  outline: none;
-  box-shadow: none;
-}
-
-ul,
-li {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 15px;
-  list-style-type: none;
-  display: inline-block;
-}
-
-a:link {
-  text-decoration: none;
-  font-weight: normal;
-}
-
-a:visited,
-a:active,
-a:hover {
-  text-decoration: none;
-  font-weight: bold;
-}
 
