@@ -4,6 +4,7 @@
 
 {% block script_blcok %}
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -29,11 +30,30 @@
             });
         });
 
-            $("#open_button").click(function(){
+        //카카오 공유
+        function shareKakao() {
+            Kakao.init('61d34319ce6231efe326b8125598493a');
+
+            Kakao.Link.createDefaultButton({
+                container: '#btnKakao',
+                objectType: 'feed',
+                content: {
+                    title: "{{ exhibition.name }} - {{ exhibition.user.username }}",
+                    description: "{{ piece.explain | truncatewords:12 }}",
+                    imageUrl: "http://fine-village.co.kr/",
+                    link: {
+                        mobileWebUrl: window.location.href,  //카카오 앱
+                        webUrl:  window.location.href  //카카오 PC
+                    }
+                }
+            });
+        }
+
+        $("#open_button").click(function(){
             $("#open").attr("style", "display:block");
         });
 
-            $("#close").click(function(){
+        $("#close").click(function(){
             $("#open").attr("style", "display:none");
         });
 
