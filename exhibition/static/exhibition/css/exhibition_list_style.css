@@ -139,6 +139,7 @@ h2 {
 
     .category_list {
         height: 100%;
+        width: 100%;
         display: flex;
         align-content: center;
         flex-direction: column;
@@ -154,6 +155,17 @@ h2 {
     .category_list > li {
         padding-right: 0;
         padding-bottom: 10px;
+    }
+
+    .h_name{
+        display: inline-block;
+        margin: 0 auto;
+        width: 100%;
+        padding-top: 10px;
+        font-size: 18px;
+        text-align: center;
+        font-weight: bold;
+        align-items: center;
     }
 
 }

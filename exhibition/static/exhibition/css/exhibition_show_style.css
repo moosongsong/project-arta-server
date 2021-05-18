@@ -84,15 +84,18 @@
     justify-content: center;
 }
 
-.main_name {
+.h_name{
     display: inline-block;
     margin: auto;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
 }
 
 .icon_row {
     display: flex;
     justify-content: flex-end;
-    padding-right: 2%;
+    padding-right: 10px;
     wrap-option: nowrap;
     float: right;
 }
@@ -204,16 +207,20 @@
         font-size: 15px;
     }
 
-    .main_name {
-        padding-top: 5px;
-    }
-
     .icon_row {
         flex-direction: column;
         justify-content: flex-start;
         padding-right: 0;
         wrap-option: nowrap;
         align-items: center;
+    }
+
+    .h_name{
+        margin: auto;
+        width: 100%;
+        padding-top: 10px;
+        text-align: center;
+        font-size: 18px;
     }
 
 }
