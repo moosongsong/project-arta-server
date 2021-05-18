@@ -204,6 +204,10 @@
         font-size: 15px;
     }
 
+    .main_name {
+        padding-top: 5px;
+    }
+
     .icon_row {
         flex-direction: column;
         justify-content: flex-start;
