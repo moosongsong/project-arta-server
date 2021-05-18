@@ -29,12 +29,12 @@
             });
         });
 
-            $("#open").click(function(){
-            $("#modal").attr("style", "display:block");
+            $("#open_button").click(function(){
+            $("#open").attr("style", "display:block");
         });
 
             $("#close").click(function(){
-            $("#modal").attr("style", "display:none");
+            $("#open").attr("style", "display:none");
         });
 
     </script>
@@ -65,7 +65,7 @@
                 {#                        <p class="icon_font"> 좋아요 취소 </p>#}
                 {#                    </a>#}
                 <!--guestbook icon-->
-                <a class="guest_book">
+                <a class="guest_book" id="open_button">
                     <i class="fa fa-comment-alt" style="font-size:13px" aria-hidden="true"></i>
                     <p class="icon_font"> 방명록 </p>
 
