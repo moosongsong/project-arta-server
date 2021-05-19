@@ -43,10 +43,10 @@
             <h2 class="h_name"> 좋아요 목록 </h2>
             <ul class="category_list">
                 <li>
-                    <a href="/preference/exhibition/" class="list_bold">전시회</a>
+                    <a href="/preference/piece/">작품</a>
                 </li>
                 <li>
-                    <a href="/preference/piece/">작품</a>
+                    <a href="/preference/exhibition/" class="list_bold">전시회</a>
                 </li>
             </ul>
         </div>
@@ -72,23 +72,67 @@
                             </a>
                         </div>
                     {% endfor %}
-                {% else %}
-                    <p>아직 좋아요를 표시한 전시회가 없습니다.</p>
                 {% endif %}
             </div>
         </div>
+        {% if exhibitionlike_list %}
+        {% else %}
+            <div style="margin-bottom: 80%;margin-top: 10%">
+                <p>아직 좋아요를 표시한 전시회가 없습니다.</p>
+            </div>
+        {% endif %}
     </div>
     <div class="row">
         <div class="footer_row col-xs-12"> <!--아래 페이징 공간-->
             <footer>
-                <ul class="pagination pagination-sm">
-                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-left"
-                                                                           aria-hidden="true"></i></a></li>
-                    <li class="page-item"><a class="page-fake" href="#"><i class="" aria-hidden="true"></i></a></li>
-                    <li class="page-item"><a class="page-fake" href="#"><i class="" aria-hidden="true"></i></a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-right"
-                                                                           aria-hidden="true"></i></a></li>
-                </ul>
+                {% if is_paginated %}
+                    <p>- {{ page_obj.number }} -</p>
+                    <ul class="pagination pagination-sm">
+                        {% if page_obj.has_next %}
+                            {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="?page={{ page_obj.previous_page_number }}">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% endif %}
+                        {% else %}
+                            {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="?page={{ page_obj.previous_page_number }}">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                {% endif %}
             </footer>
         </div>
     </div>

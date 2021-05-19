@@ -37,17 +37,7 @@ class ExhibitionList(ListView):
     def get_context_data(self, **kwargs):
         context = super(ExhibitionList, self).get_context_data()
         context['categories'] = Category.objects.all()
-        context['materials'] = Material.objects.all()
-        return context
-
-
-class ExhibitionDetail(DetailView):
-    model = Exhibition
-    template_name = 'exhibition/ARTA_User_exhibition_show.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(ExhibitionDetail, self).get_context_data()
-        context['categories'] = Category.objects.all()
+        context['category_name'] = '전체'
         return context
 
 
@@ -69,8 +59,7 @@ class PieceList(ListView):
         like = ExhibitionLike.objects.filter(user=user, exhibition_id=pk)
         context['like_list'] = like
         context['exhibition'] = get_object_or_404(Exhibition, pk=pk)
-        context['categories'] = Category.objects.all()
-        # context['materials'] = Material.objects.all()
+        context['materials'] = Material.objects.all()
         return context
 
 
@@ -143,9 +132,9 @@ class LikeManage:
     def exhibition_like(request, pk):
         if request.user.is_authenticated:
             exhibition = get_object_or_404(Exhibition, pk=pk)
-            olderLike = ExhibitionLike.objects.filter(exhibition=exhibition, user=request.user)
+            older_like = ExhibitionLike.objects.filter(exhibition=exhibition, user=request.user)
 
-            if olderLike:
+            if older_like:
                 return redirect(exhibition.get_absolute_url())
 
             like = ExhibitionLike(exhibition=exhibition, user=request.user)
@@ -166,8 +155,8 @@ class LikeManage:
     def piece_like(request, pk):
         if request.user.is_authenticated:
             piece = get_object_or_404(Piece, pk=pk)
-            olderLike = PieceLike.objects.filter(piece=piece, user=request.user)
-            if olderLike:
+            older_like = PieceLike.objects.filter(piece=piece, user=request.user)
+            if older_like:
                 return redirect(piece.get_absolute_url())
 
             like = PieceLike(piece=piece, user=request.user)
@@ -188,6 +177,7 @@ class LikeManage:
 class LikePieceList(ListView):
     model = PieceLike
     template_name = 'exhibition/ARTA_LikePiecePage.html'
+    paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super(LikePieceList, self).get_context_data()
@@ -197,6 +187,7 @@ class LikePieceList(ListView):
 class LikeExhibitionList(ListView):
     model = ExhibitionLike
     template_name = 'exhibition/ARTA_LikeExhibitionPage.html'
+    paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super(LikeExhibitionList, self).get_context_data()
@@ -259,6 +250,6 @@ class CategoryManage:
             {
                 'exhibition_list': Exhibition.objects.filter(category=category),
                 'categories': Category.objects.all(),
-                'category': category,
+                'category_name': category,
             }
         )

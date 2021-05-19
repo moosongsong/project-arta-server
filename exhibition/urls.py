@@ -15,7 +15,6 @@ urlpatterns = [
     path('search/result/exhibition/<str:q>/', views.ExhibitionSearch.as_view()),
 
     path('exhibition/', views.ExhibitionList.as_view()),
-    # path('exhibition/<int:pk>/', views.ExhibitionDetail.as_view()),
     path('exhibition/<int:pk>/', views.PieceList.as_view()),
     path('exhibition/category/<str:slug>/', views.CategoryManage.category_page),
     path('exhibition/<int:pk>/new_guestbook/', views.GuestbookManage.new_guestbook),
