@@ -23,7 +23,8 @@ class SinglePage:
     def login_page(request):
         return render(
             request,
-            'exhibition/ARTA_User_login.html'
+            # 'exhibition/ARTA_User_login.html'
+            'exhibition/ARTA_User_login_kakao.html'
         )
 
     # 여기서 test할 파일 집어넣어서 하시오.
@@ -50,7 +51,6 @@ class ExhibitionList(ListView):
 
 class ExhibitionDetail(DetailView):
     model = Exhibition
-
     template_name = 'exhibition/ARTA_User_exhibition_show.html'
 
     def get_context_data(self, **kwargs):
@@ -63,6 +63,7 @@ class PieceList(ListView):
     model = Piece
     ordering = 'pk'
     paginate_by = 8
+    template_name = 'exhibition/ARTA_User_exhibition_show.html'
 
     def get_queryset(self):
         exhibition_id = self.kwargs['pk']
@@ -72,6 +73,9 @@ class PieceList(ListView):
     def get_context_data(self, **kwargs):
         context = super(PieceList, self).get_context_data()
         pk = self.kwargs['pk']
+        # user = self.request.user
+        # like = get_object_or_404(ExhibitionLike, user=user)
+        # context['like'] = like
         context['exhibition'] = get_object_or_404(Exhibition, pk=pk)
         context['categories'] = Category.objects.all()
         context['materials'] = Material.objects.all()
@@ -84,6 +88,10 @@ class PieceDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PieceDetail, self).get_context_data()
+        # user = self.request.user
+        # like = PieceLike.objects.get(user=user)
+        # like = get_object_or_404(PieceLike, user=user)
+        # context['like'] = like
         return context
 
 
@@ -207,7 +215,7 @@ class LikeExhibitionList(ListView):
 class ExhibitionSearch(ListView):
     model = Exhibition
     template_name = 'exhibition/ARTA_search_result.html'
-    paginate_by = 6
+    paginate_by = 8
 
     def get_queryset(self):
         q = self.kwargs['q']
@@ -225,7 +233,7 @@ class ExhibitionSearch(ListView):
 class PieceSearch(ListView):
     model = Piece
     template_name = 'exhibition/ARTA_search_result.html'
-    paginate_by = 6
+    paginate_by = 8
 
     def get_queryset(self):
         q = self.kwargs['q']

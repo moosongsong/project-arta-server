@@ -17,9 +17,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com"><!--font-->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <!--font-->
-    <link rel="preconnect" href="https://fonts.gstatic.com"><!--font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-    <!--font-->
 
 
     <script>
@@ -82,8 +81,7 @@
             height: 100%;
             width: 0;
             position: fixed;
-            z-index: 1;
-            top: 0;
+        {#z-index: 1;#} top: 0;
             left: 0;
             background-color: white;
             overflow-x: hidden;
@@ -201,9 +199,9 @@
                     {% if user.is_authenticated %}
                         <a href="/preference/">좋아요 목록보기 <small>like page</small></a>
                         <a href="/accounts/logout/">로그아웃 <small>log out</small></a>
-                        <p>{{ user.username }}님 반갑습니다.</p>
+                        <p class="text-left" style="padding: 5% 5% 5% 10%;text-decoration: none;font-size: 15px;
+                        color: #5CA4A2;display: block;transition: 0.3s;">'{{ user.username }}'님<br/>반갑습니다 ❤</p>
                     {% else %}
-{#                        <a href="{% provider_login_url 'kakao' method='oauth2' %}"><img src="https://simpleicons.org/icons/kakaotalk.svg" height="30pt">&nbsp&nbsp Log in with Kakao <small>log in</small></a>#}
                         <a href="/login/">로그인 <small>log in</small></a>
                     {% endif %}
                 </div>

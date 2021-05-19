@@ -87,8 +87,8 @@
     <div class="row">
         <div class="footer_row col-xs-12"> <!--아래 페이징 공간-->
             <footer>
-                <p>- {{ page_obj.number }} -</p>
                 {% if is_paginated %}
+                    <p>- {{ page_obj.number }} -</p>
                     <ul class="pagination pagination-sm">
                         {% if page_obj.has_next %}
                             {% if page_obj.has_previous %}
