@@ -73,18 +73,20 @@
                     <p class="icon_font"> 공유 </p>
                 </a>
                 <!--like icon-->
-                {% if like_list %}
-                    {% for like in like_list %}
-                        <a class="bookmark" href="{{ exhibition.get_absolute_url }}dislike/{{ like.pk }}/">
-                            <i class="fa fa-heart" aria-hidden="true"></i>
-                            <p class="icon_font">좋아요 취소</p>
+                {% if user.is_authenticated %}
+                    {% if like_list %}
+                        {% for like in like_list %}
+                            <a class="bookmark" href="{{ exhibition.get_absolute_url }}dislike/{{ like.pk }}/">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                <p class="icon_font">좋아요 취소</p>
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <a class="bookmark" href="{{ exhibition.get_absolute_url }}new_like/">
+                            <i class="fa fa-heart red" style="font-size:13px;color:red;" aria-hidden="true"></i>
+                            <p class="icon_font"> 좋아요 </p>
                         </a>
-                    {% endfor %}
-                {% else %}
-                    <a class="bookmark" href="{{ exhibition.get_absolute_url }}new_like/">
-                        <i class="fa fa-heart red" style="font-size:13px;color:red;" aria-hidden="true"></i>
-                        <p class="icon_font"> 좋아요 </p>
-                    </a>
+                    {% endif %}
                 {% endif %}
                 <!--guestbook icon-->
                 <a class="guest_book" id="open_button">

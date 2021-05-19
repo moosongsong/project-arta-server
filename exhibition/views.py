@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
-from .models import Exhibition, Category, Material, Piece, Comment, GuestBook, ExhibitionLike, PieceLike
+from .models import Exhibition, Category, Material, Piece, Comment, GuestBook, ExhibitionLike, PieceLike, \
+    ExhibitionClick, PieceClick
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
@@ -55,9 +56,13 @@ class PieceList(ListView):
     def get_context_data(self, **kwargs):
         context = super(PieceList, self).get_context_data()
         pk = self.kwargs['pk']
-        user = self.request.user
-        like = ExhibitionLike.objects.filter(user=user, exhibition_id=pk)
-        context['like_list'] = like
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            like = ExhibitionLike.objects.filter(user=user, exhibition_id=pk)
+            context['like_list'] = like
+            click = ExhibitionClick(user=user, exhibition_id=pk)
+            click.save()
+
         context['exhibition'] = get_object_or_404(Exhibition, pk=pk)
         context['materials'] = Material.objects.all()
         return context
@@ -70,9 +75,13 @@ class PieceDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PieceDetail, self).get_context_data()
         pk = self.kwargs['pk']
-        user = self.request.user
-        like = PieceLike.objects.filter(user=user, piece_id=pk)
-        context['like_list'] = like
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            like = PieceLike.objects.filter(user=user, piece_id=pk)
+            context['like_list'] = like
+            click = PieceClick(user=user, piece_id=pk)
+            click.save()
+
         return context
 
 
@@ -202,7 +211,7 @@ class ExhibitionSearch(ListView):
     def get_queryset(self):
         q = self.kwargs['q']
         piece_list = Exhibition.objects.filter(
-            Q(name__contains=q) | Q(category__smallName__contains=q)).distinct()
+            Q(name__contains=q) | Q(category__smallName__contains=q) | Q(explain__contains=q)).distinct()
         return piece_list
 
     def get_context_data(self, **kwargs):
@@ -219,7 +228,8 @@ class PieceSearch(ListView):
 
     def get_queryset(self):
         q = self.kwargs['q']
-        piece_list = Piece.objects.filter(Q(name__contains=q) | Q(author__contains=q) | Q(major__contains=q)).distinct()
+        piece_list = Piece.objects.filter(Q(name__contains=q) | Q(author__contains=q) | Q(major__contains=q) | Q(
+            material__name__contains=q)).distinct()
         return piece_list
 
     def get_context_data(self, **kwargs):
