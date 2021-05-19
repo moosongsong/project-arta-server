@@ -18,7 +18,7 @@
                     imageUrl: "http://fine-village.co.kr/",
                     link: {
                         mobileWebUrl: window.location.href,  //카카오 앱
-                        webUrl:  window.location.href  //카카오 PC
+                        webUrl: window.location.href  //카카오 PC
                     }
                 }
             });
@@ -31,22 +31,25 @@
     <link rel="stylesheet" href="{% static 'exhibition/css/pagination.css' %}"/>
 
     <style>
-      .article_container {
-        border-bottom: 1px solid #5CA4A2;
-      }
-      .exhibitor, .piece_name {
-        font-weight: bold;
-      }
-      @media screen and (min-width: 768px) and (max-width: 991px) {
-        .aside_container {
-          display: none;
+        .article_container {
+            border-bottom: 1px solid #5CA4A2;
         }
-      }
-      @media screen and (min-width: 992px) {
-        .aside_nav {
-          display: none;
+
+        .exhibitor, .piece_name {
+            font-weight: bold;
         }
-      }
+
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            .aside_container {
+                display: none;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .aside_nav {
+                display: none;
+            }
+        }
     </style>
 {% endblock %}
 
@@ -95,10 +98,19 @@
                 <div class="icon"> <!--공유 버튼, 좋아요 버튼-->
                     <a class="share" id="btnKakao" href="javascript:shareKakao();"><i class="fa fa-share-alt"
                                                                                       aria-hidden="true"></i></a>
-                    <a class="bookmark" href="{{ piece.get_absolute_url }}new_like/"><i class="fa fa-heart"
-                                                                                        aria-hidden="true"></i></a>
-                    {#                        <a class="bookmark" href="{{ piece.get_absolute_url }}dislike/"><i class="fa fa-heart" aria-hidden="true"></i></a>#}
-                    <!-- <a class="menu_button" href=""><i class="fa fa-bars" style="font-size:15px" aria-hidden="true"></i></a> -->
+                    {% if like_list %}
+                        {% for like in like_list %}
+                        <a class="bookmark" href="{{ piece.get_absolute_url }}dislike/{{ like.pk }}/">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            좋아요 취소
+                        </a>
+                        {% endfor %}
+                    {% else %}
+                        <a class="bookmark" href="{{ piece.get_absolute_url }}new_like/">
+                            <i class="fa fa-heart" aria-hidden="true" style="color: red"></i>
+                            좋아요
+                        </a>
+                    {% endif %}
                 </div>
 
                 <!--댓글-->
@@ -123,8 +135,8 @@
 
                     {% if messages %}
                         {% for message in messages %}
-                        <p>{{ message }}</p>
-                            <p> </p>
+                            <p>{{ message }}</p>
+                            <p></p>
                         {% endfor %}
                     {% endif %}
 

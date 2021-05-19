@@ -27,14 +27,6 @@ class SinglePage:
             'exhibition/ARTA_User_login_kakao.html'
         )
 
-    # 여기서 test할 파일 집어넣어서 하시오.
-    def test_page(request):
-        return render(
-            request,
-            # add pages here
-            'exhibition/ARTA_User_login.html'
-        )
-
 
 class ExhibitionList(ListView):
     model = Exhibition
@@ -73,12 +65,12 @@ class PieceList(ListView):
     def get_context_data(self, **kwargs):
         context = super(PieceList, self).get_context_data()
         pk = self.kwargs['pk']
-        # user = self.request.user
-        # like = get_object_or_404(ExhibitionLike, user=user)
-        # context['like'] = like
+        user = self.request.user
+        like = ExhibitionLike.objects.filter(user=user, exhibition_id=pk)
+        context['like_list'] = like
         context['exhibition'] = get_object_or_404(Exhibition, pk=pk)
         context['categories'] = Category.objects.all()
-        context['materials'] = Material.objects.all()
+        # context['materials'] = Material.objects.all()
         return context
 
 
@@ -88,10 +80,10 @@ class PieceDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PieceDetail, self).get_context_data()
-        # user = self.request.user
-        # like = PieceLike.objects.get(user=user)
-        # like = get_object_or_404(PieceLike, user=user)
-        # context['like'] = like
+        pk = self.kwargs['pk']
+        user = self.request.user
+        like = PieceLike.objects.filter(user=user, piece_id=pk)
+        context['like_list'] = like
         return context
 
 
@@ -162,7 +154,7 @@ class LikeManage:
         else:
             return PermissionDenied
 
-    def exhibition_dislike(request, pk):
+    def exhibition_dislike(request, ak, pk):
         like = get_object_or_404(ExhibitionLike, pk=pk)
         exhibition = like.exhibition
         if request.user.is_authenticated and request.user == like.user:
@@ -184,12 +176,11 @@ class LikeManage:
         else:
             return PermissionDenied
 
-    def piece_dislike(request, pk):
+    def piece_dislike(request, ak, pk):
         like = get_object_or_404(PieceLike, pk=pk)
-        piece = like.piece
-        if request.user.is_authenticated and request.user == like.user:
+        if request.user.is_authenticated and like.user == request.user:
             like.delete()
-            return redirect(piece.get_absolute_url())
+            return redirect(like.get_absolute_url())
         else:
             return PermissionDenied
 
