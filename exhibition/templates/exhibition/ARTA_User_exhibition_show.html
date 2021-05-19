@@ -154,70 +154,68 @@
         </div>
         <div class="content_container col-md-11 col-md-pull-1">
             <!--exhibition-->
-            {% if is_paginated %}
-                {% if page_obj.number == 1 %}
-                    <div class="article_container">
-                        <div class="exhibition_poster">
-                            <img class="exhibition_img" src="{{ exhibition.poster.url }}" alt="포스터가 등록되지 않았습니다."/>
-                            <div class="exhibition_info">
-                                <p class="exhibit_day">{{ exhibition.start_at.date }} ~ {{ exhibition.end_at.date }}</p>
-                                <p class="exhibitor"><strong>{{ exhibition.user.username }}</strong></p>
-                                <p class="exhibition_name"><strong>{{ exhibition.name }}</strong></p>
-                            </div>
-                        </div>
-                        <div class="exhibition_main">
-                            <div class="exhibition_p">
-                                <p>{{ exhibition.explain }}</p>
-                            </div>
-                            <!--piece list-->
-                            <div class="piece_container">
-                                <!--piece loop-->
-                                {% if piece_list %}
-                                    {% for piece in piece_list %}
-                                        <!--piece-->
-                                        <div class="piece_img_block">
-                                            <a href="{{ piece.get_absolute_url }}" class="img_block">
-                                                <img class="piece_img" src="{{ piece.image.url }}"
-                                                     alt="그림이 서버에서 사라짐...ㅠㅠ"/>
-                                                <div class="piece_action">
-                                                    <p>{{ piece.author }}</p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
+            {% if is_paginated and page_obj.number != 1 %}
+                <div class="article_container">
+                    <div class="exhibition_poster">
+                        <div class="exhibition_info">
+                            <p class="exhibition_name"><strong>{{ exhibition.name }}</strong></p>
                         </div>
                     </div>
-                {% else %}
-                    <div class="article_container">
-                        <div class="exhibition_poster">
-                            <div class="exhibition_info">
-                                <p class="exhibition_name"><strong>{{ exhibition.name }}</strong></p>
-                            </div>
-                        </div>
-                        <div class="exhibition_main">
-                            <!--piece list-->
-                            <div class="piece_container">
-                                <!--piece loop-->
-                                {% if piece_list %}
-                                    {% for piece in piece_list %}
-                                        <!--piece-->
-                                        <div class="piece_img_block">
-                                            <a href="{{ piece.get_absolute_url }}" class="img_block">
-                                                <img class="piece_img" src="{{ piece.image.url }}"
-                                                     alt="그림이 서버에서 사라짐...ㅠㅠ"/>
-                                                <div class="piece_action">
-                                                    <p>{{ piece.author }}</p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
+                    <div class="exhibition_main">
+                        <!--piece list-->
+                        <div class="piece_container">
+                            <!--piece loop-->
+                            {% if piece_list %}
+                                {% for piece in piece_list %}
+                                    <!--piece-->
+                                    <div class="piece_img_block">
+                                        <a href="{{ piece.get_absolute_url }}" class="img_block">
+                                            <img class="piece_img" src="{{ piece.image.url }}"
+                                                 alt="그림이 서버에서 사라짐...ㅠㅠ"/>
+                                            <div class="piece_action">
+                                                <p>{{ piece.author }}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
-                {% endif %}
+                </div>
+            {% else %}
+                <div class="article_container">
+                    <div class="exhibition_poster">
+                        <img class="exhibition_img" src="{{ exhibition.poster.url }}" alt="포스터가 등록되지 않았습니다."/>
+                        <div class="exhibition_info">
+                            <p class="exhibit_day">{{ exhibition.start_at.date }} ~ {{ exhibition.end_at.date }}</p>
+                            <p class="exhibitor"><strong>{{ exhibition.user.username }}</strong></p>
+                            <p class="exhibition_name"><strong>{{ exhibition.name }}</strong></p>
+                        </div>
+                    </div>
+                    <div class="exhibition_main">
+                        <div class="exhibition_p">
+                            <p>{{ exhibition.explain }}</p>
+                        </div>
+                        <!--piece list-->
+                        <div class="piece_container">
+                            <!--piece loop-->
+                            {% if piece_list %}
+                                {% for piece in piece_list %}
+                                    <!--piece-->
+                                    <div class="piece_img_block">
+                                        <a href="{{ piece.get_absolute_url }}" class="img_block">
+                                            <img class="piece_img" src="{{ piece.image.url }}"
+                                                 alt="그림이 서버에서 사라짐...ㅠㅠ"/>
+                                            <div class="piece_action">
+                                                <p>{{ piece.author }}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
             {% endif %}
             {% if piece_list %}
             {% else %}
