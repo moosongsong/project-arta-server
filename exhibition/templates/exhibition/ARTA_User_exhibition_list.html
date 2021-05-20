@@ -1,12 +1,11 @@
 {% extends 'exhibition/ARTA_header.html' %}
 {% load static %}
-{% block header_title %}<title>전시회 목록보기</title>{% endblock %}
+{% block header_title %}<title>전시회 목록</title>{% endblock %}
 
 {% block script_blcok %}
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-
             $(window).scroll(function () {
                 $('.exhibition_action').each(function (i) {
                     var bottom_of_object = $(this).offset().top + $(this).outerHeight();
@@ -24,7 +23,6 @@
                             $(this).fadeTo(500, 0);
                         }
                     }
-
                 });
             });
         });
@@ -55,7 +53,8 @@
                     {% if categories.exists %}
                         {% for category in categories %}
                             {% if category.slug == category_name.slug %}
-                                <li><a href="{{ category.get_absolute_url }}" class="list_bold">{{ category.smallName }}</a></li>
+                                <li><a href="{{ category.get_absolute_url }}"
+                                       class="list_bold">{{ category.smallName }}</a></li>
                             {% else %}
                                 <li><a href="{{ category.get_absolute_url }}">{{ category.smallName }}</a></li>
                             {% endif %}
@@ -143,6 +142,8 @@
                             {% endif %}
                         {% endif %}
                     </ul>
+                {% else %}
+                    <div style="height: 50px;"></div>
                 {% endif %}
             </footer>
         </div>

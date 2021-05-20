@@ -1,27 +1,29 @@
 {% extends 'exhibition/ARTA_header.html' %}
 {% load static %}
-{% block header_title %}<title>ARTA 작품 보기</title>{% endblock %}
+{% block header_title %}<title>{{ piece.name }}</title>{% endblock %}
 
 {% block script_blcok %}
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
         //카카오 공유
-        function shareKakao() {
-            Kakao.init('61d34319ce6231efe326b8125598493a');
-            Kakao.Link.createDefaultButton({
-                container: '#btnKakao',
-                objectType: 'feed',
-                content: {
-                    title: "{{ piece.name }} - {{ piece.author }}",
-                    description: "{{ piece.explain | truncatewords:12 }}",
-                    imageUrl: "http://fine-village.co.kr/",
-                    link: {
-                        mobileWebUrl: window.location.href,  //카카오 앱
-                        webUrl: window.location.href  //카카오 PC
+        $(document).ready(
+            function shareKakao() {
+                Kakao.init('61d34319ce6231efe326b8125598493a');
+                Kakao.Link.createDefaultButton({
+                    container: '#btnKakao',
+                    objectType: 'feed',
+                    content: {
+                        title: "{{ piece.name }} - {{ piece.author }}",
+                        description: "{{ piece.explain | truncatewords:12 }}",
+                        imageUrl: "http://fine-village.co.kr/",
+                        link: {
+                            mobileWebUrl: window.location.href,  //카카오 앱
+                            webUrl: window.location.href  //카카오 PC
+                        }
                     }
-                }
-            });
-        }
+                });
+            })
     </script>
 {% endblock %}
 {% block style_blcok %}

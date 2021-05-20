@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from .models import Exhibition, Category, Material, Piece, Comment, GuestBook, ExhibitionLike, PieceLike, \
-    ExhibitionClick, PieceClick
+    ExhibitionClick, PieceClick, ExhibitionShare, PieceShare
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
@@ -67,6 +67,7 @@ class PieceList(ListView):
 
         context['exhibition'] = get_object_or_404(Exhibition, pk=pk)
         context['materials'] = Material.objects.all()
+        context['total'] = Piece.objects.filter(exhibition=exhibition).count()
         return context
 
 
@@ -271,3 +272,23 @@ class CategoryManage:
                 'category_name': category,
             }
         )
+
+
+class ShareManage:
+    def exhibition_share(request, pk):
+        if request.user.is_authenticated:
+            exhibition = get_object_or_404(Exhibition, pk=pk)
+            share = ExhibitionShare(exhibition=exhibition, user=request.user)
+            share.save()
+            return redirect(exhibition.get_absolute_url())
+        else:
+            return PermissionDenied
+
+    def piece_share(request, pk):
+        if request.user.is_authenticated:
+            piece = get_object_or_404(Piece, pk=pk)
+            share = PieceShare(piece=piece, user=request.user)
+            share.save()
+            return redirect(piece.get_absolute_url())
+        else:
+            return PermissionDenied
