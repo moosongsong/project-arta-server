@@ -62,6 +62,11 @@
         <!--piece-->
         <div class="content_container col-md-11 col-md-pull-1">
             <div class="article_container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>"{{ message }}"</p>
+                    {% endfor %}
+                {% endif %}
                 <div class="row row_content">
                     <div class="form-group">
                         <p class="piece_name col-xs-6">{{ piece.name }}</p>
@@ -105,13 +110,13 @@
                             {% for like in like_list %}
                                 <a class="bookmark" href="{{ piece.get_absolute_url }}dislike/{{ like.pk }}/">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
-                                    좋아요 취소
+                                    <span style="size: 12px">좋아요 취소</span>
                                 </a>
                             {% endfor %}
                         {% else %}
                             <a class="bookmark" href="{{ piece.get_absolute_url }}new_like/">
                                 <i class="fa fa-heart" aria-hidden="true" style="color: red"></i>
-                                좋아요
+                                <span style="size: 12px">좋아요</span>
                             </a>
                         {% endif %}
                     {% endif %}
@@ -135,13 +140,6 @@
                         <div class="input-comment">
                             <p>로그인을 하셔야 댓글을 달 수 있습니다.</p>
                         </div>
-                    {% endif %}
-
-                    {% if messages %}
-                        {% for message in messages %}
-                            <p>{{ message }}</p>
-                            <p></p>
-                        {% endfor %}
                     {% endif %}
 
                     <!--comment loop-->

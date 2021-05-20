@@ -24,7 +24,6 @@ class SinglePage:
     def login_page(request):
         return render(
             request,
-            # 'exhibition/ARTA_User_login.html'
             'exhibition/ARTA_User_login_kakao.html'
         )
 
@@ -56,6 +55,9 @@ class PieceList(ListView):
     def get_context_data(self, **kwargs):
         context = super(PieceList, self).get_context_data()
         pk = self.kwargs['pk']
+        exhibition = Exhibition.objects.get(pk=pk)
+        exhibition.click_count = exhibition.click_count + 1
+        exhibition.save()
         if self.request.user.is_authenticated:
             user = self.request.user
             like = ExhibitionLike.objects.filter(user=user, exhibition_id=pk)
@@ -75,6 +77,9 @@ class PieceDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PieceDetail, self).get_context_data()
         pk = self.kwargs['pk']
+        piece = Piece.objects.get(pk=pk)
+        piece.click_count = piece.click_count+1
+        piece.save()
         if self.request.user.is_authenticated:
             user = self.request.user
             like = PieceLike.objects.filter(user=user, piece_id=pk)
@@ -244,9 +249,6 @@ class SearchPage:
         return render(
             request,
             'exhibition/ARTA_search_page.html',
-            {
-                #
-            }
         )
 
 
