@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="{% static 'exhibition/css/main.css' %}"/>
     <link rel="stylesheet" href="{% static 'exhibition/css/LikePage_style.css' %}"/>
     <link rel="stylesheet" href="{% static 'exhibition/css/pagination.css' %}"/>
+
 {% endblock %}
 
 {% block main_blcok %}
@@ -41,161 +42,133 @@
         <div class="aside_container col-md-1 col-md-push-11">
             <h2 class="h_name"> 좋아요 목록 </h2>
             <ul class="category_list">
-                {#                <li>#}
-                {#                    <a href="#" class="list_bold">전체</a>#}
-                {#                </li>#}
-                <li>
-                    <a href="/preference/exhibition/">전시회</a>
-                </li>
-                <li>
-                    <a href="/preference/piece/">작품</a>
-                </li>
+                {% if mode == '전시회' %}
+                    <li>
+                        <a href="/preference/piece/">작품</a>
+                    </li>
+                    <li>
+                        <a href="/preference/exhibition/" class="list_bold">전시회</a>
+                    </li>
+                {% elif mode == '작품' %}
+                    <li>
+                        <a href="/preference/piece/" class="list_bold">작품</a>
+                    </li>
+                    <li>
+                        <a href="/preference/exhibition/">전시회</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
         <div class="content_container col-md-11 col-md-pull-1">
             <div class="article_container">
-                <div class="article_block">
-                    <div class="exhibition_img_block">
-                        <a href="./user_exhibition_show.html" class="img_block">
-                            <img class="exhibition_img" src="https://i.imgur.com/hiTuxfv.jpeg" alt="전시회1 포스터"/>
-                            <div class="exhibition_action">
-                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
+                {% if exhibitionlike_list %}
+                    {% for exhibitionlike in exhibitionlike_list %}
+                        <div class="article_block">
+                            <div class="exhibition_img_block">
+                                <a href="{{ exhibitionlike.get_absolute_url }}" class="img_block">
+                                    <img class="exhibition_img" src="{{ exhibitionlike.exhibition.poster.url }}"
+                                         alt="포스터가 서버에서 날아감..."/>
+                                    <div class="exhibition_action">
+                                        <p>{{ exhibitionlike.exhibition.explain | truncatewords:10 }}</p>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibitor">전시자명</p>
-                    </a>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibition_name">전시회 이름</p>
-                    </a>
-                </div>
-                <div class="article_block">
-                    <div class="exhibition_img_block">
-                        <a href="./user_exhibition_show.html" class="img_block">
-                            <img class="exhibition_img" src="https://i.imgur.com/hiTuxfv.jpeg" alt="전시회1 포스터"/>
-                            <div class="exhibition_action">
-                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
+                            <a href="{{ exhibitionlike.get_absolute_url }}">
+                                <p class="exhibitor">{{ exhibitionlike.exhibition.user.username }}</p>
+                            </a>
+                            <a href="{{ exhibitionlike.get_absolute_url }}">
+                                <p class="exhibition_name">{{ exhibitionlike.exhibition.name }}</p>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% elif piecelike_list %}
+                    {% for piecelike in piecelike_list %}
+                        <div class="article_block">
+                            <div class="exhibition_img_block">
+                                <a href="{{ piecelike.get_absolute_url }}" class="img_block">
+                                    <img class="exhibition_img" src="{{ piecelike.piece.image.url }}"
+                                         alt="서버에서 사진 날라감"/>
+                                    <div class="exhibition_action">
+                                        <p>{{ piecelike.piece.explain | truncatewords:10 }}</p>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibitor">전시자명</p>
-                    </a>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibition_name">전시회 이름</p>
-                    </a>
-                </div>
-                <div class="article_block">
-                    <div class="exhibition_img_block">
-                        <a href="./user_exhibition_show.html" class="img_block">
-                            <img class="exhibition_img" src="" alt="전시회1 포스터"/>
-                            <div class="exhibition_action">
-                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
-                            </div>
-                        </a>
-                    </div>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibitor">전시자명</p>
-                    </a>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibition_name">전시회 이름</p>
-                    </a>
-                </div>
-                <div class="article_block">
-                    <div class="exhibition_img_block">
-                        <a href="./user_exhibition_show.html" class="img_block">
-                            <img class="exhibition_img" src="" alt="전시회1 포스터"/>
-                            <div class="exhibition_action">
-                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
-                            </div>
-                        </a>
-                    </div>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibitor">전시자명</p>
-                    </a>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibition_name">전시회 이름</p>
-                    </a>
-                </div>
-                <div class="article_block">
-                    <div class="exhibition_img_block">
-                        <a href="./user_exhibition_show.html" class="img_block">
-                            <img class="exhibition_img" src="https://i.imgur.com/hiTuxfv.jpeg" alt="전시회1 포스터"/>
-                            <div class="exhibition_action">
-                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
-                            </div>
-                        </a>
-                    </div>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibitor">전시자명</p>
-                    </a>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibition_name">전시회 이름</p>
-                    </a>
-                </div>
-                <div class="article_block">
-                    <div class="exhibition_img_block">
-                        <a href="./user_exhibition_show.html" class="img_block">
-                            <img class="exhibition_img" src="https://i.imgur.com/hiTuxfv.jpeg" alt="전시회1 포스터"/>
-                            <div class="exhibition_action">
-                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
-                            </div>
-                        </a>
-                    </div>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibitor">전시자명</p>
-                    </a>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibition_name">전시회 이름</p>
-                    </a>
-                </div>
-                <div class="article_block">
-                    <div class="exhibition_img_block">
-                        <a href="./user_exhibition_show.html" class="img_block">
-                            <img class="exhibition_img" src="" alt="전시회1 포스터"/>
-                            <div class="exhibition_action">
-                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
-                            </div>
-                        </a>
-                    </div>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibitor">전시자명</p>
-                    </a>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibition_name">전시회 이름</p>
-                    </a>
-                </div>
-                <div class="article_block">
-                    <div class="exhibition_img_block">
-                        <a href="./user_exhibition_show.html" class="img_block">
-                            <img class="exhibition_img" src="" alt="전시회1 포스터"/>
-                            <div class="exhibition_action">
-                                <p> 전시회 설명이 들어가야 합니다... 이게 맞는건가요???</p>
-                            </div>
-                        </a>
-                    </div>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibitor">전시자명</p>
-                    </a>
-                    <a href="./user_exhibition_show.html">
-                        <p class="exhibition_name">전시회 이름</p>
-                    </a>
-                </div>
+                            <a href="{{ piecelike.get_absolute_url }}">
+                                <p class="exhibitor">{{ piecelike.piece.author }}</p>
+                            </a>
+                            <a href="{{ piecelike.get_absolute_url }}">
+                                <p class="exhibition_name">{{ piecelike.piece.name }}</p>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
+        {% if mode == '전시회' and exhibitionlike_list %}
+        {% elif mode == '전시회' %}
+            <div style="margin-bottom: 80%;margin-top: 10%">
+                <p>아직 좋아요를 표시한 전시회가 없습니다.</p>
+            </div>
+        {% endif %}
+        {% if mode == '작품' and piecelike_list %}
+        {% elif mode == '작품' %}
+            <div style="margin-bottom: 80%;margin-top: 10%">
+                <p>아직 좋아요를 표시한 작품이 없습니다.</p>
+            </div>
+        {% endif %}
+    </div>
     </div>
     <div class="row">
-        <div class="footer_row col-xs-12"> <!--아래 페이징 공간-->
+        <div class="footer_row col-xs-12">
             <footer>
-                <ul class="pagination pagination-sm">
-                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-left"
-                                                                           aria-hidden="true"></i></a></li>
-                    <li class="page-item"><a class="page-fake" href="#"><i class="" aria-hidden="true"></i></a></li>
-                    <li class="page-item"><a class="page-fake" href="#"><i class="" aria-hidden="true"></i></a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-chevron-right"
-                                                                           aria-hidden="true"></i></a></li>
-                </ul>
+                {% if is_paginated %}
+                    <p>- {{ page_obj.number }} -</p>
+                    <ul class="pagination pagination-sm">
+                        {% if page_obj.has_next %}
+                            {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="?page={{ page_obj.previous_page_number }}">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% endif %}
+                        {% else %}
+                            {% if page_obj.has_previous %}
+                                <li class="page-item"><a class="page-link"
+                                                         href="?page={{ page_obj.previous_page_number }}">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake" href="#">
+                                    <i class="" aria-hidden="true"></i></a></li>
+                                <li class="page-item"><a class="page-fake disabled" href="">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                {% endif %}
             </footer>
         </div>
     </div>

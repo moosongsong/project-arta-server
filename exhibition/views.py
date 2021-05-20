@@ -78,7 +78,7 @@ class PieceDetail(DetailView):
         context = super(PieceDetail, self).get_context_data()
         pk = self.kwargs['pk']
         piece = Piece.objects.get(pk=pk)
-        piece.click_count = piece.click_count+1
+        piece.click_count = piece.click_count + 1
         piece.save()
         if self.request.user.is_authenticated:
             user = self.request.user
@@ -190,21 +190,23 @@ class LikeManage:
 
 class LikePieceList(ListView):
     model = PieceLike
-    template_name = 'exhibition/ARTA_LikePiecePage.html'
+    template_name = 'exhibition/ARTA_LikePage.html'
     paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super(LikePieceList, self).get_context_data()
+        context['mode'] = '작품'
         return context
 
 
 class LikeExhibitionList(ListView):
     model = ExhibitionLike
-    template_name = 'exhibition/ARTA_LikeExhibitionPage.html'
+    template_name = 'exhibition/ARTA_LikePage.html'
     paginate_by = 8
 
     def get_context_data(self, **kwargs):
         context = super(LikeExhibitionList, self).get_context_data()
+        context['mode'] = '전시회'
         return context
 
 

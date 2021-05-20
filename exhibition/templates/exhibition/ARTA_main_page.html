@@ -20,9 +20,8 @@
         }
 
         .main_logo {
-            width: 100%;
             width: 225px;
-            height: 74px;
+            {#height: 74px;#}
 
         }
 
@@ -32,8 +31,9 @@
 
         @media screen and (min-width: 992px) {
             .main_logo {
-                width: 520px;
-                height: 170px;
+                {#width: 520px;#}
+                width: 225px;;
+                {#height: 170px;#}
             }
         }
     </style>
@@ -49,16 +49,14 @@
                     {% endfor %}
                 {% endif %}
                 <div class="main_page">
-                    <img class="main_logo" src="{% static 'exhibition/images/민트로고.png' %}" alt="ARTA">
+{#                    <img class="main_logo" src="{% static 'exhibition/images/민트로고.png' %}" alt="ARTA">#}
+                    <img class="main_logo" src="{% static 'exhibition/images/fine.png' %}" alt="fine">
                 </div>
-                <!-- <article>
-
-                </article> -->
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="footer col-xs-12"> <!--아래 페이징 공간-->
+        <div class="footer col-xs-12" style="height: 40px;">
 
         </div>
     </div>
