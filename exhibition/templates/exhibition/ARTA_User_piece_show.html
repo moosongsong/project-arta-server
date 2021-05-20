@@ -53,6 +53,13 @@
 {% endblock %}
 
 {% block main_blcok %}
+    {% if messages %}
+        {% for message in messages %}
+            <script>
+                alert("{{ message }}");
+            </script>
+        {% endfor %}
+    {% endif %}
     <div class="row">
         <!--title-->
         <div class="aside_container col-md-1 col-md-push-11">
@@ -61,11 +68,6 @@
         <!--piece-->
         <div class="content_container col-md-11 col-md-pull-1">
             <div class="article_container">
-                {% if messages %}
-                    {% for message in messages %}
-                        <p>"{{ message }}"</p>
-                    {% endfor %}
-                {% endif %}
                 <div class="row row_content">
                     <div class="form-group">
                         <p class="piece_name col-xs-6">{{ piece.name }}</p>

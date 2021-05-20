@@ -98,7 +98,7 @@ class CommentManage:
             if request.method == 'POST':
                 comment = Comment(content=request.POST.get('content'), piece=piece, user=request.user)
                 comment.save()
-                messages.warning(request, "댓글을 성공적으로 등록했습니다.")
+                messages.info(request, "댓글이 등록되었습니다.")
                 return redirect(comment.get_absolute_url())
             else:
                 return redirect(piece.get_absolute_url())
@@ -110,7 +110,7 @@ class CommentManage:
         piece = comment.piece
         if request.user.is_authenticated and request.user == comment.user:
             comment.delete()
-            messages.warning(request, "댓글이 성공적으로 삭제되었습니다.")
+            messages.info(request, "댓글이 삭제되었습니다.")
             return redirect(piece.get_absolute_url())
         else:
             raise PermissionDenied
@@ -124,7 +124,7 @@ class GuestbookManage:
             if request.method == 'POST':
                 guestbook = GuestBook(content=request.POST.get('content'), exhibition=exhibition, user=request.user)
                 guestbook.save()
-                messages.warning(request, "방명록을 성공적으로 등록했습니다.")
+                messages.info(request, "방명록이 등록되었습니다.")
                 return redirect(guestbook.get_absolute_url())
             else:
                 return redirect(exhibition.get_absolute_url())
@@ -136,7 +136,7 @@ class GuestbookManage:
         exhibition = guestbook.exhibition
         if request.user.is_authenticated and request.user == guestbook.user:
             guestbook.delete()
-            messages.warning(request, "방명록이 성공적으로 삭제되었습니다.")
+            messages.info(request, "방명록이 삭제되었습니다.")
             return redirect(exhibition.get_absolute_url())
         else:
             raise PermissionDenied
@@ -153,6 +153,7 @@ class LikeManage:
 
             like = ExhibitionLike(exhibition=exhibition, user=request.user)
             like.save()
+            messages.info(request, "좋아요를 눌렀습니다.")
             return redirect(like.get_absolute_url())
         else:
             return PermissionDenied
@@ -162,6 +163,7 @@ class LikeManage:
         exhibition = like.exhibition
         if request.user.is_authenticated and request.user == like.user:
             like.delete()
+            messages.info(request, "좋아요를 취소했습니다")
             return redirect(exhibition.get_absolute_url())
         else:
             return PermissionDenied
@@ -175,6 +177,7 @@ class LikeManage:
 
             like = PieceLike(piece=piece, user=request.user)
             like.save()
+            messages.info(request, "좋아요를 눌렀습니다.")
             return redirect(like.get_absolute_url())
         else:
             return PermissionDenied
@@ -183,6 +186,7 @@ class LikeManage:
         like = get_object_or_404(PieceLike, pk=pk)
         if request.user.is_authenticated and like.user == request.user:
             like.delete()
+            messages.info(request, "좋아요를 취소했습니다")
             return redirect(like.get_absolute_url())
         else:
             return PermissionDenied
