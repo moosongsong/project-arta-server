@@ -116,6 +116,9 @@
 .guest_book {
     display: inline-block;
     text-align: center;
+    outline: none;
+    border: none;
+    background-color: white;
 }
 
 .bookmark > .red {
@@ -128,6 +131,10 @@
 
 .exhibition_name > strong{
     font-size: 18px;
+}
+
+.guest_book:hover {
+    font-weight: bold;
 }
 
 @media screen and (min-width: 992px) and (max-width: 1024px) {
@@ -225,25 +232,21 @@
 
 }
 
-.modal-hidden {
-    display: none;
+.modal-dialog {
     position: fixed;
     top: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.8);
+    bottom: 0;
+    left: 0;
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
-    pointer-events: none;
-    z-index: 200;
+    z-index: 300;
 }
 
 .modal-Box {
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     padding: 15px;
     border: 2px solid #5CA4A2;
     background-color: white;
@@ -353,4 +356,8 @@
     display: inline-block;
     float: right;
     font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: white;
+
 }

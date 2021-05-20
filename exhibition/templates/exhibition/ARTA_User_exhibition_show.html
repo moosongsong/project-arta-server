@@ -45,17 +45,19 @@
                 }
             });
         }
-
-        //모달 버튼
-        $("#open_button").click(function () {
-            $("#open").attr("style", "display:block");
-        });
-
-        $("#close").click(function () {
-            $("#open").attr("style", "display:none");
-        });
-
     </script>
+
+    <script>
+        // 모달 버튼에 이벤트를 건다.
+        $('#open').on('click', function(){
+            $('#modal').modal('show');
+        });
+        // 모달 안의 취소 버튼에 이벤트를 건다.
+        $('#close').on('click', function(){
+            $('#modal').modal('hide');
+        });
+    </script>
+
 {% endblock %}
 {% block style_blcok %}
     <link rel="stylesheet" href="{% static 'exhibition/css/exhibition_show_style.css' %}"/>
@@ -89,69 +91,70 @@
                     {% endif %}
                 {% endif %}
                 <!--guestbook icon-->
-                <a class="guest_book" id="open_button">
+                <button type="button" class="guest_book" id="open" data-toggle="modal" data-target="#modal">
                     <i class="fa fa-comment-alt" style="font-size:13px" aria-hidden="true"></i>
                     <p class="icon_font"> 방명록 </p>
-
-                    <div class="modal-hidden" id="open">
-                        <div class="modal-Box" id="modal">
+                </button>
+                <div class="modal fade" id="modal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-Box" id="modal_content" role="document">
                             <p class="modal-name">전시회 방명록</p>
-                            <a class="modal-close" id="close"><i class="fas fa-times"></i></a>
+                            <button type="button" class="modal-close" id="close" data-dismiss="modal"><i class="fas fa-times"></i></button>
 
                             <!--guestbook list-->
                             <div class="comments">
                                 <!--guestbook insert form-->
                                 {% if user.is_authenticated %}
-                                    <form id="comment-form" method="post"
-                                          action="{{ exhibition.get_absolute_url }}new_guestbook/">
-                                        {% csrf_token %}
-                                        <div class="input-comment">
-                                            <label for="new_comment"></label>
-                                            <textarea class="form-control" id="new_comment" name="content" rows="3"
-                                                      placeholder="방명록을 입력해주세요"></textarea>
-                                            <button class="submit_btn" type="submit" onclick="submitComment()">OK!
-                                            </button>
-                                        </div>
-                                    </form>
-                                {% else %}
+                                <form id="comment-form" method="post"
+                                      action="{{ exhibition.get_absolute_url }}new_guestbook/">
+                                    {% csrf_token %}
                                     <div class="input-comment">
-                                        <p>로그인을 하셔야 방명록을 남길 수 있습니다.</p>
+                                        <label for="new_comment"></label>
+                                        <textarea class="form-control" id="new_comment" name="content" rows="3"
+                                                  placeholder="방명록을 입력해주세요"></textarea>
+                                        <button class="submit_btn" type="submit" onclick="submitComment()">OK!
+                                        </button>
                                     </div>
+                                </form>
+                                {% else %}
+                                <div class="input-comment">
+                                    <p>로그인을 하셔야 방명록을 남길 수 있습니다.</p>
+                                </div>
                                 {% endif %}
 
                                 {% if messages %}
-                                    {% for message in messages %}
-                                        <p>{{ message }}</p>
-                                        <p></p>
-                                    {% endfor %}
+                                {% for message in messages %}
+                                <p>{{ message }}</p>
+                                <p></p>
+                                {% endfor %}
                                 {% endif %}
 
                                 <!--guest book loop-->
                                 {% if exhibition.guestbook_set.exists %}
-                                    {% for guestbook in exhibition.guestbook_set.iterator %}
-                                        <div class="comment-row">
-                                            <div class="store-comment">
-                                                <div class="comment-id">
-                                                    <strong>{{ guestbook.user.username }}</strong>
-                                                </div>
-                                                <div class="comment-date">{{ guestbook.create_at }}</div>
-                                                {% if guestbook.user == user and user.is_authenticated %}
-                                                    <a href="/exhibition/delete_guestbook/{{ guestbook.pk }}">
-                                                        <button class="cancel-button"><i class="fas fa-times"></i>
-                                                        </button>
-                                                    </a>
-                                                {% endif %}
-                                            </div>
-                                            <div class="comment-content">{{ guestbook.content }}</div>
+                                {% for guestbook in exhibition.guestbook_set.iterator %}
+                                <div class="comment-row">
+                                    <div class="store-comment">
+                                        <div class="comment-id">
+                                            <strong>{{ guestbook.user.username }}</strong>
                                         </div>
-                                    {% endfor %}
+                                        <div class="comment-date">{{ guestbook.create_at }}</div>
+                                        {% if guestbook.user == user and user.is_authenticated %}
+                                        <a href="/exhibition/delete_guestbook/{{ guestbook.pk }}">
+                                            <button class="cancel-button"><i class="fas fa-times"></i>
+                                            </button>
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="comment-content">{{ guestbook.content }}</div>
+                                </div>
+                                {% endfor %}
                                 {% else %}
-                                    <p>아직 작성된 방명록이 없습니다! 당신이 첫번째 방명록을 달아주세여</p>
+                                <p>아직 작성된 방명록이 없습니다! 당신이 첫번째 방명록을 달아주세여</p>
                                 {% endif %}
                             </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
         <div class="content_container col-md-11 col-md-pull-1">
