@@ -82,6 +82,7 @@ class PieceList(ListView):
         context['exhibition'] = get_object_or_404(Exhibition, pk=pk)
         context['materials'] = Material.objects.all()
         context['total'] = Piece.objects.filter(exhibition=exhibition).count()
+        context['piece_list'] = Piece.objects.filter(exhibition=exhibition).order_by('author')
         return context
 
 
