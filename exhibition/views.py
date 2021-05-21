@@ -18,13 +18,20 @@ class SinglePage:
     def about_page(request):
         return render(
             request,
-            'exhibition/ARTA_introduction.html'
+            # 'exhibition/ARTA_introduction.html'
+            'exhibition/ARTA_fine_introduction.html'
         )
 
     def login_page(request):
         return render(
             request,
             'exhibition/ARTA_User_login_kakao.html'
+        )
+
+    def credit_page(request):
+        return render(
+            request,
+            'exhibition/ARTA_credit.html'
         )
 
 
@@ -154,7 +161,7 @@ class LikeManage:
 
             like = ExhibitionLike(exhibition=exhibition, user=request.user)
             like.save()
-            messages.info(request, "좋아요를 눌렀습니다.")
+            # messages.info(request, "좋아요를 눌렀습니다.")
             return redirect(like.get_absolute_url())
         else:
             return PermissionDenied
@@ -164,7 +171,7 @@ class LikeManage:
         exhibition = like.exhibition
         if request.user.is_authenticated and request.user == like.user:
             like.delete()
-            messages.info(request, "좋아요를 취소했습니다")
+            # messages.info(request, "좋아요를 취소했습니다")
             return redirect(exhibition.get_absolute_url())
         else:
             return PermissionDenied
@@ -178,7 +185,7 @@ class LikeManage:
 
             like = PieceLike(piece=piece, user=request.user)
             like.save()
-            messages.info(request, "좋아요를 눌렀습니다.")
+            # messages.info(request, "좋아요를 눌렀습니다.")
             return redirect(like.get_absolute_url())
         else:
             return PermissionDenied
@@ -187,7 +194,7 @@ class LikeManage:
         like = get_object_or_404(PieceLike, pk=pk)
         if request.user.is_authenticated and like.user == request.user:
             like.delete()
-            messages.info(request, "좋아요를 취소했습니다")
+            # messages.info(request, "좋아요를 취소했습니다")
             return redirect(like.get_absolute_url())
         else:
             return PermissionDenied
