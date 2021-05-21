@@ -90,6 +90,15 @@
                     </div>
                 </div>
 
+                <!--작품 설명-->
+                {% if piece.author_say %}
+                    <p class="">작가 노트</p>
+                    <div class="row row_content">
+{#                        <div class="explain_piece">#}
+                            <p class="view">{{ piece.author_say }}</p>
+{#                        </div>#}
+                    </div>
+                {% endif %}
                 <div class="row">
                     <div class="piece_size">
                         <p class="size">{{ piece.size }}</p>
@@ -125,13 +134,11 @@
                             {% for like in like_list %}
                                 <a class="bookmark" href="{{ piece.get_absolute_url }}dislike/{{ like.pk }}/">
                                     <i class="fa fa-heart" aria-hidden="true"></i>
-{#                                    <span style="size: 12px">좋아요 취소</span>#}
                                 </a>
                             {% endfor %}
                         {% else %}
                             <a class="bookmark" href="{{ piece.get_absolute_url }}new_like/">
                                 <i class="far fa-heart" aria-hidden="true"></i>
-{#                                <span style="size: 12px">좋아요</span>#}
                             </a>
                         {% endif %}
                     {% endif %}
