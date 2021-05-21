@@ -73,14 +73,18 @@
                 <div class="row row_content">
                     <div class="form-group">
                         <p class="piece_name col-xs-6">{{ piece.name }}</p>
-                        <p class="exhibitor col-xs-6">{{ piece.author }}</p>
+                        <p class="exhibitor col-xs-6">{{ piece.author }}&nbsp;
+                            {% if piece.remove_at %}
+                            ({{ piece.remove_at.year }}作)
+                            {% endif %}
+                        </p>
                     </div>
                 </div>
 
                 <!--작품 설명-->
                 <div class="row row_content">
                     <div class="explain_piece">
-                        <p class="explanation">{{ piece.explain }}</p>
+                        <p class="explanation text-left">{{ piece.explain }}</p>
                     </div>
                 </div>
 
@@ -94,9 +98,7 @@
                 {% if piece.author_say %}
                     <p class="">작가 노트</p>
                     <div class="row row_content">
-{#                        <div class="explain_piece">#}
-                            <p class="view">{{ piece.author_say }}</p>
-{#                        </div>#}
+                        <p class="view">{{ piece.author_say }}</p>
                     </div>
                 {% endif %}
                 <div class="row">
