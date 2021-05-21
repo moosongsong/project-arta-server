@@ -56,14 +56,14 @@ class ExhibitionList(ListView):
 
 class PieceList(ListView):
     model = Piece
-    ordering = ['author']
     paginate_by = 12
     # template_name = 'exhibition/ARTA_User_exhibition_show.html'
     template_name = 'exhibition/ARTA_User_fine_exhibition_show.html'
+    # ordering = ['-author']
 
     def get_queryset(self):
         exhibition_id = self.kwargs['pk']
-        piece_list = Piece.objects.filter(Q(exhibition_id=exhibition_id))
+        piece_list = Piece.objects.filter(exhibition_id=exhibition_id).order_by('author')
         return piece_list
 
     def get_context_data(self, **kwargs):
@@ -82,7 +82,6 @@ class PieceList(ListView):
         context['exhibition'] = get_object_or_404(Exhibition, pk=pk)
         context['materials'] = Material.objects.all()
         context['total'] = Piece.objects.filter(exhibition=exhibition).count()
-        # context['piece_list'] = Piece.objects.filter(exhibition=exhibition).order_by('author')
         return context
 
 
