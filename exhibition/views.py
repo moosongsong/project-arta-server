@@ -6,6 +6,7 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+from random import *
 
 
 class SinglePage:
@@ -43,9 +44,13 @@ class ExhibitionList(ListView):
     template_name = 'exhibition/ARTA_User_fine_exhibition_list.html'
 
     def get_context_data(self, **kwargs):
+        #
+        i = randint(1, 2)
+        #
         context = super(ExhibitionList, self).get_context_data()
         context['categories'] = Category.objects.all()
         context['category_name'] = '전체'
+        context['randnum'] = i
         return context
 
 
