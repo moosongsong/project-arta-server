@@ -51,7 +51,7 @@ class ExhibitionList(ListView):
 class PieceList(ListView):
     model = Piece
     ordering = 'pk'
-    paginate_by = 8
+    paginate_by = 12
     template_name = 'exhibition/ARTA_User_exhibition_show.html'
 
     def get_queryset(self):
