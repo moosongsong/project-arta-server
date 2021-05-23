@@ -59,7 +59,6 @@ class PieceList(ListView):
     paginate_by = 12
     # template_name = 'exhibition/ARTA_User_exhibition_show.html'
     template_name = 'exhibition/ARTA_User_fine_exhibition_show.html'
-    # ordering = ['-author']
 
     def get_queryset(self):
         exhibition_id = self.kwargs['pk']
