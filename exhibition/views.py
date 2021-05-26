@@ -210,6 +210,11 @@ class LikePieceList(ListView):
     model = PieceLike
     template_name = 'exhibition/ARTA_LikePage.html'
     paginate_by = 8
+    
+    def get_queryset(self):
+        user = self.request.user
+        piece_like_list = PieceLike.objects.filter(user=user)
+        return piece_like_list
 
     def get_context_data(self, **kwargs):
         context = super(LikePieceList, self).get_context_data()
@@ -221,6 +226,11 @@ class LikeExhibitionList(ListView):
     model = ExhibitionLike
     template_name = 'exhibition/ARTA_LikePage.html'
     paginate_by = 8
+    
+    def get_queryset(self):
+        user = self.request.user
+        exhibition_like_list = ExhibitionLike.objects.filter(user=user)
+        return exhibition_like_list
 
     def get_context_data(self, **kwargs):
         context = super(LikeExhibitionList, self).get_context_data()
