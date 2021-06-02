@@ -1,5 +1,4 @@
 # ARTA_SERVER_DEVELOP
 ARTA 서버 개발
 
-#finevil
-finepass0208
+리팩토링 예정
