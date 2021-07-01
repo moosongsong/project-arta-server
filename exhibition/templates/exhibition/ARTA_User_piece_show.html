@@ -17,7 +17,7 @@
                     content: {
                         title: "{{ piece.name }} - {{ piece.author }}",
                         description: "{{ piece.explain | truncatewords:12 }}",
-                        imageUrl: "http://fine-village.co.kr/",
+                        imageUrl: "{{ piece.image.url }}",
                         link: {
                             mobileWebUrl: window.location.href,  //카카오 앱
                             webUrl: window.location.href  //카카오 PC
